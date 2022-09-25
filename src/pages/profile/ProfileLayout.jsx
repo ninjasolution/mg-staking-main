@@ -73,10 +73,10 @@ const ProfileLayout = () => {
 
     provider.on('chainChanged', async (chainId) => {      
       console.log("Network:" + chainId);      
-      if (chainId != '0x4') {
+      if (chainId != '0x3') {
         await window.ethereum.request({
             method: 'wallet_switchEthereumChain',
-            params: [{ chainId: '0x4' }], // chainId must be in hexadecimal numbers
+            params: [{ chainId: '0x3' }], // chainId must be in hexadecimal numbers
         });
         // location.reload();
       }
