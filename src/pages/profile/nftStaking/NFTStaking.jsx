@@ -170,7 +170,7 @@ const NFTStaking = () => {
                       src={
                         nft?.token_uri
                           ? nft?.token_uri
-                          : `https://arcadeape.mypinata.cloud/ipfs/QmWSWEzMFmR5YS6y9CpTR3dCcsqwLaVA5vAPLYFQ5NCrCP/${nft}.png`
+                          : `https://megafans.mypinata.cloud/ipfs/QmebhFnQA35j4yGhGyNrGumBkuTmPFYr3NLvdxk3irvcBj/${nft}.jpg`
                       }
                       alt='NFT Staking Img'
                       className='nftStakingImg'
@@ -233,7 +233,7 @@ const NFTStaking = () => {
                       src={
                         nft?.token_uri
                           ? nft?.token_uri
-                          : `https://arcadeape.mypinata.cloud/ipfs/QmWSWEzMFmR5YS6y9CpTR3dCcsqwLaVA5vAPLYFQ5NCrCP/${nft}.png`
+                          : `https://megafans.mypinata.cloud/ipfs/QmebhFnQA35j4yGhGyNrGumBkuTmPFYr3NLvdxk3irvcBj/${nft}.jpg`
                       }
                       alt='NFT Staking Img'
                       className='nftStakingImg'

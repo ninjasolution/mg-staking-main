@@ -28,7 +28,7 @@ const NFTDeatilModal = ({
  
   useEffect(()=>{
     if (id){
-      axios.get(`https://arcadeape.mypinata.cloud/ipfs/QmbJgMZXqPvvQJMrhQir9VDA8f8F8Hsm13MciJL5t3d4Lx/${id}.json`).then((res)=>{
+      axios.get(`https://megafans.mypinata.cloud/ipfs/QmXG4j7CkuCCTsGzAzeyFhXm2TP1TpFhhf6PPiMgLMUFCo/${id}.json`).then((res)=>{
         let info = res.data;
         nftContract.methods.levelOfId(id).call().then((lvl)=>{
           info.level = lvl;
@@ -97,7 +97,7 @@ const NFTDeatilModal = ({
                 <Col sm={12} md={5}>
                   <div className='detailImg DBlock'>
                     <img
-                      src={`https://arcadeape.mypinata.cloud/ipfs/QmWSWEzMFmR5YS6y9CpTR3dCcsqwLaVA5vAPLYFQ5NCrCP/${id}.png`}
+                      src={`https://megafans.mypinata.cloud/ipfs/QmebhFnQA35j4yGhGyNrGumBkuTmPFYr3NLvdxk3irvcBj/${id}.jpg`}
                       alt='NFT Staking Img'
                     />
                   </div>
