@@ -53,7 +53,7 @@ function App() {
         <Route
           path='/sign-up'
           element={
-            !auth?.isLoggedIn ? (
+            auth?.isLoggedIn ? (
               <Navigate to='/profile' replace={true} />
             ) : (
               <SignUp />
@@ -81,7 +81,7 @@ function App() {
         <Route
           path='/profile/edit-profile'
           element={
-            !auth?.isLoggedIn ? (
+            auth?.isLoggedIn ? (
               <EditProfile />
             ) : (
               <Navigate to='/sign-in' replace={true} />
@@ -91,7 +91,7 @@ function App() {
         <Route
           path='/profile'
           element={
-            !auth?.isLoggedIn ? (
+            auth?.isLoggedIn ? (
               <ProfileLayout />
             ) : (
               <Navigate to='/sign-in' replace={true} />
