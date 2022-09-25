@@ -1,0 +1,218 @@
+//faq page
+.faqPage{
+  @include Media(767){
+    padding: 0 15px;
+  }
+  //FAQ Section
+  .faqSec {
+    position: relative;
+    padding: 100px 0;
+    @include Media(991){
+      padding: 30px 0px;
+    }
+    @include Title(uppercase);
+    .title{
+      @include Media(767){
+        text-align: center;
+      }
+    }
+    .faqCardWrap{
+      margin-top: 150px;
+      .faqCardCol{
+        @include Media(991){
+          margin-bottom: 120px;
+        }
+        .faqCard {
+          position: relative;
+          @include BorRadius(12px);
+          height: 100%;
+          background: #581A6B;
+          box-shadow: 0px 4px 8px rgba(175, 175, 175, 0.15);
+          padding: 10px;
+          margin-bottom: 30px;
+          border: 1px solid transparent;
+          @include Tran(.4s, ease-in-out);
+      
+          &:hover {
+            border-color: nth($color, 4);
+            background: #290841;
+      
+            a {
+              color: nth($color, 1);
+            }
+      
+            .faqIcon {
+              border-color: nth($color, 3);
+            }
+          }
+      
+          .faqIcon {
+            position: relative;
+            @include Flex(center, center);
+            margin: -75px auto 50px;
+            @include BorRadius(50%);
+            width: 150px;
+            height: 150px;
+            background: nth($color, 4);
+            border: 2px dashed nth($color, 1);
+            @include Font(4, 1);
+            @include Tran(.4s, ease-in-out);
+          }
+      
+          h6 {
+            text-align: center;
+            margin-bottom: 15px;
+            @include FontBold(1.6, 1);
+          }
+      
+          p {
+            margin-bottom: 25px;
+            text-align: center;
+            @include Font(1, 1);
+          }
+      
+          a {
+            display: block;
+            text-align: center;
+            @include Font(1, 3);
+            @include Tran(.4s, ease-in-out);
+      
+            svg {
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  
+  }
+  
+}
+//FAQ Question Page
+.faqQuestionPage {
+  position: relative;
+  padding: 100px 0;
+  @include Media(767){
+    padding: 0 15px;
+  }
+  @include Title(uppercase);
+  .title{
+    text-align: center;
+    padding-bottom: 30px;
+  }
+  .faqQuestionDiv {
+    position: relative;
+  }
+  .faqQuestionCol{
+    @include Media(991){
+      margin-top: 30px;
+    }
+    .faqQuestionCard {
+      @include Flex(space-between, flex-start);
+      flex-direction: column;
+      position: relative;
+      height: 100%;
+      @include BorRadius(12px);
+      background: #581A6B;
+      box-shadow: 0px 4px 8px rgba(175, 175, 175, 0.15);
+      padding: 15px;
+      margin-bottom: 30px;
+      border: 1px solid transparent;
+      @include Tran(.4s, ease-in-out);
+  
+      &:hover {
+        border-color: nth($color, 3);
+        background: #290841;
+  
+        a {
+          background: nth($color, 3);
+        }
+      }
+  
+      .cardImg {
+        position: relative;
+        @include BorRadius(50%);
+        width: 60px;
+        height: 60px;
+        margin-bottom: 10px;
+        background: rgba(14, 6, 61, 0.8);
+        box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+      }
+  
+      h4 {
+        margin-bottom: 30px;
+        @include FontBold(1.5, 1);
+        min-height: 100px;
+        @include Media(767){
+          min-height: auto;
+          @include FontBold(1.2, 1);
+        }
+      }
+  
+      a {
+        @include Flex(center, center);
+        text-align: center;
+        border: 1px solid nth($color, 1);
+        @include Font(1, 1);
+        @include BorRadius(50%);
+        @include Tran(.4s, ease-in-out);
+        width: 30px;
+        height: 30px;
+        background: rgba(255, 255, 255, 0.2);
+  
+        svg,
+        polyline {
+          font-size: 1.2rem;
+          color: nth($color, 1);
+          stroke: nth($color, 1);
+        }
+      }
+    }
+  }
+}
+
+//Faq Detail Page
+.faqDetailPage {
+  position: relative;
+  padding: 100px 0;
+  @include Media(767){
+    padding: 0 15px;
+  }
+  .faqDetailCard {
+    position: relative;
+    background: rgba(14, 6, 61, 0.3);
+    box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+    backdrop-filter: blur(100px);
+    @include BorRadius(8px);
+    border: 1px solid nth($color, 3);
+    padding: 30px 50px;
+    @include Title(uppercase);
+    @include Media(767){
+      padding: 35px 30px;
+    }
+    .title{
+      text-align: center;
+      padding-bottom: 30px;
+    }
+
+    .detailContent {
+      height: 148px;
+      overflow: hidden;
+      margin-bottom: 50px;
+
+      p {
+        @include Font(1.2, 1);
+        line-height: 1.5;
+        @include Media(767){
+          @include Font(1, 1);
+        }
+      }
+    }
+
+    button {
+      @include Font(1, 3);
+      background: transparent;
+      border: 0;
+    }
+  }
+}

@@ -1,0 +1,426 @@
+//company page 
+.companyPage {
+  @include Media(767) {
+    padding: 0 15px;
+  }
+
+  //Our Pricing Section
+  .ourPricingSec {
+    position: relative;
+    padding: 100px 0;
+
+    @include Media(991) {
+      padding: 30px 0px;
+    }
+
+    @include Title(capitalize);
+
+    .pricingTab {
+      position: relative;
+
+      ul.tabUl {
+        width: fit-content;
+        position: relative;
+        margin: 0 auto 70px;
+        overflow: hidden;
+        border: 1px solid nth($color, 1);
+        @include BorRadius(25px);
+
+        @include Media(767) {
+          margin: 40px auto 20px;
+        }
+
+        button {
+          text-transform: uppercase;
+          background: transparent;
+          @include Font(1, 1);
+          border: 0;
+          padding: 8px 30px;
+          @include BorRadius(25px);
+          @include Tran(0.4s, ease-in-out);
+
+          &:hover,
+          &.active {
+            background: #bb6bd9;
+          }
+        }
+      }
+
+
+    }
+  }
+
+
+
+  //investmentPartnerSec
+  .investmentPartnerSec {
+    position: relative;
+    padding: 100px 0;
+
+    @include Media(991) {
+      padding: 30px 0px;
+    }
+
+    .leftCryptDiv {
+      @include Title(capitalize);
+
+      @include Media(575) {
+        .title {
+          h2 {
+            font-size: 2rem;
+          }
+        }
+      }
+
+      p {
+        @include Font(1, 7);
+        padding-top: 15px;
+        line-height: 25px;
+        letter-spacing: 0.1em;
+        font-weight: 400;
+
+        @include Media(575) {
+          @include Font(0.8, 7);
+          line-height: 20px;
+        }
+      }
+
+      button {
+        @include Flex(center, center);
+        width: fit-content;
+        padding: 5px 10px;
+        @include Font(1, 1);
+        border: 1px solid white;
+        @include BorRadius(25px);
+        background: transparent;
+        text-transform: capitalize;
+
+        span {
+          @include Flex(center, center);
+          margin-left: 20px;
+          width: 20px;
+          height: 20px;
+          background: nth($color, 1);
+          @include BorRadius(50%);
+          color: nth($color, 3);
+        }
+      }
+    }
+  }
+
+  //projectCompletedSec
+  .projectCompletedSec {
+    position: relative;
+    margin: 100px 0;
+
+    @include Media(991) {
+      padding: 30px 0px;
+    }
+
+    background: rgba(14, 6, 61, 0.3);
+    box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.16);
+    backdrop-filter: blur(100px);
+
+    .starImg {
+      position: absolute;
+      left: 1%;
+      bottom: -15%;
+      width: 80px;
+    }
+
+    .leftContentDiv {
+      @include Title(capitalize);
+      padding-top: 50px;
+
+      @include Media(1199) {
+        padding: 50px 0;
+      }
+
+      @include Media(991) {
+        padding: 30px 0;
+      }
+
+      .projectComplete {
+        border-left: 4px solid white;
+        padding-left: 20px;
+      }
+    }
+
+    .rightContentDiv {
+      position: relative;
+
+      @include Media(991) {
+        display: none;
+      }
+
+      img {
+        margin: 0;
+        margin-top: -22%;
+
+        @include Media(1199) {
+          margin-bottom: -22%;
+        }
+
+        @include Media(991) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+//MegaFan NFt
+.aboutSec {
+  padding: 100px 0;
+
+  @include Media(991) {
+    padding: 30px 0;
+  }
+
+  .leftAboutSec {
+    position: relative;
+    background: rgba(180, 15, 231, 0.2);
+    box-shadow: 0px 3px 8px 2px rgba(0, 0, 0, 0.2);
+    @include BorRadius(10px);
+
+    .descWrap {
+      position: relative;
+      padding: 1rem 1rem 2.5rem;
+
+      .title {
+        @include Font(1, 1);
+        text-transform: capitalize;
+        padding: 1rem 0;
+      }
+
+      .nodes {
+        @include Font(2, 1);
+        font-weight: 700;
+      }
+
+      img {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+
+    .imgSec {
+      position: relative;
+
+      @include Media(991) {
+        display: none;
+      }
+
+      img {
+        position: absolute;
+        bottom: -28%;
+        right: -5%;
+      }
+    }
+  }
+
+  .flex-row-reverse.row {
+    .rightAboutSec {
+      padding-left: 0rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .rightAboutSec {
+    padding-left: 2rem;
+    @include Title(uppercase);
+
+    .title {
+      @include Media(767) {
+        h2 {
+          text-align: center;
+          padding-bottom: 10px;
+        }
+      }
+
+      p {
+        letter-spacing: 0.1em;
+        @include FontLight(1, 1);
+        text-transform: normal !important;
+        color: #E0E0E0;
+      }
+
+      a {
+        @include Flex(flex-start, center);
+        width: fit-content;
+        padding: 8px 15px;
+        border: 1px solid nth($color, 3);
+        background: nth($color, 3);
+        @include FontMedium(1, 1);
+        @include BorRadius(25px);
+        @include Tran(0.4s, ease-in-out);
+        margin-right: 10px;
+
+        @include Media(345) {
+          margin-top: 15px;
+        }
+
+        &:hover {
+          background: transparent;
+        }
+
+        span {
+          @include Flex(center, center);
+          @include BorRadius(50%);
+          margin-left: 30px;
+          width: 20px;
+          height: 20px;
+          background: nth($color, 1);
+          @include Font(0.8, 3);
+        }
+      }
+    }
+
+    @include Media(991) {
+      padding-left: 0;
+      margin-top: 40px;
+    }
+  }
+}
+
+.pricingDiv {
+  position: relative;
+  background: rgba(180, 15, 231, 0.15);
+  @include BorRadius(10px);
+  @include Tran(0.4s, ease-in-out);
+  border: 1px solid transparent;
+  box-shadow: 0px 4px 8px rgba(175, 175, 175, 0.15);
+
+  &:hover,
+  &.active {
+    background: rgba(14, 6, 61, 0.4);
+    border: 1px solid nth($color, 4);
+
+    .heading {
+      border-color: transparent;
+      background: rgba(14, 6, 61, 0.6);
+      box-shadow: 0px 3px 8px 2px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .heading {
+    padding: 15px;
+    background: rgba(14, 6, 61, 0.5);
+    @include BorRadius(5px);
+    border: 1px solid nth($color, 4);
+    text-align: center;
+    @include Tran(0.4s, ease-in-out);
+
+    h4 {
+      text-transform: uppercase;
+      @include FontBold(1.2, 1);
+    }
+  }
+
+  .bodyContent {
+    position: relative;
+    padding: 30px 15px;
+
+    @include Media(1199) {
+      padding: 10px 10px;
+    }
+
+    h6 {
+      margin-bottom: 20px;
+      @include FontMedium(1.3, 1);
+      @include Flex(space-between, center);
+
+      span {
+        display: inline-block;
+        padding: 5px 15px;
+        @include Font(1, 1);
+        background: rgba(180, 15, 231, 0.2);
+        box-shadow: 0px 3px 8px 2px rgba(0, 0, 0, 0.2);
+        @include BorRadius(25px);
+      }
+    }
+
+    ul {
+      position: relative;
+      margin-bottom: 30px;
+
+      li {
+        @include Font(.9, 1);
+        margin-bottom: 10px;
+        @include Flex(flex-start, center);
+
+        span {
+          margin-right: 10px;
+        }
+
+        p {
+          width: calc(100% - 30px);
+          line-height: 1.2rem;
+        }
+      }
+    }
+
+    .intersetDiv {
+      padding: 20px;
+      text-align: center;
+      @include BorRadius(10px);
+      margin-bottom: 30px;
+      border: 1px solid nth($color, 3);
+
+      p {
+        @include Font(1, 1);
+      }
+    }
+
+    button {
+      @include Flex(space-between, center);
+      width: 100%;
+      padding: 8px 15px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      border: 1px solid nth($color, 3);
+      background: nth($color, 3);
+      @include FontMedium(1, 1);
+      @include BorRadius(25px);
+      @include Tran(0.4s, ease-in-out);
+      margin-right: 10px;
+
+      @include Media(345) {
+        margin-top: 15px;
+      }
+
+      &.outline {
+        @include Media(345) {
+          margin-top: 15px;
+        }
+
+        border: 1px solid nth($color, 1);
+        background: transparent;
+
+        &:hover {
+          color: nth($color, 3);
+        }
+
+        span {
+          background: nth($color, 3);
+          @include Font(0.8, 1);
+        }
+      }
+
+      &:hover {
+        background: transparent;
+      }
+
+      span {
+        @include Flex(center, center);
+        @include BorRadius(50%);
+        margin-left: 30px;
+        width: 20px;
+        height: 20px;
+        background: nth($color, 1);
+        @include Font(0.8, 3);
+      }
+    }
+  }
+}

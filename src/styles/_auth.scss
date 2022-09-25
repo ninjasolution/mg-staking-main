@@ -1,0 +1,115 @@
+//signup page & login page
+.signUpPage,
+.loginPage {
+  position: relative;
+  padding: 100px 0;
+
+  @include Media(767) {
+    padding: 50px 15px;
+  }
+
+  .signUpDiv,
+  .loginDiv {
+    padding-left: 30px;
+
+    @include Media(768) {
+      padding-left: 0px;
+    }
+
+    .titleSec {
+      position: relative;
+
+      .lightCoin {
+        position: absolute;
+        top: -45%;
+        left: 0%;
+        z-index: -1;
+      }
+
+      h1 {
+        @include FontBold(2, 1);
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+
+        @include Media(991) {
+          @include FontBold(1.7, 1);
+        }
+
+        span {
+          color: #8447e9;
+        }
+      }
+    }
+
+    p {
+      @include FontLight(1, 1);
+      letter-spacing: 0.05em;
+      line-height: 23px;
+      padding: 25px 0;
+    }
+
+    .signUpForm,
+    .loginForm {
+      input {
+        display: block;
+        width: 100%;
+        border: 1px solid #fff;
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 1px 2px 8px rgba(205, 205, 205, 0.15);
+        outline: 0;
+        padding: 10px 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+        color: #fff;
+
+        &::placeholder {
+          text-transform: capitalize;
+          @include Font(1, 1);
+          color: #fff;
+        }
+      }
+
+      .alreadyAccount {
+        @include FontLight(1, 1);
+        @include Flex(flex-end, center);
+
+        span {
+          color: #00fadf;
+          padding-left: 5px;
+
+          &.signUp {
+            @include Font(1, 4);
+            font-weight: 600;
+            color: #ff013e;
+          }
+        }
+      }
+
+      .signUpBtn,
+      .loginBtn {
+        @include Flex(flex-start, center);
+        margin-top: 50px;
+
+        button {
+          background: #ff013e;
+          border: 1px solid #ff013e;
+          border-radius: 60px;
+          outline: none;
+          padding: 10px 25px;
+          @include Font(1, 1);
+          font-weight: 500;
+          text-transform: capitalize;
+
+          @include Media(767) {
+            padding: 15px 20px;
+          }
+
+          span {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+}

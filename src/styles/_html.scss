@@ -1,0 +1,161 @@
+/* =============================
+        HTML & BODY
+============================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 1rem;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+  color: nth($color, 1);
+  font-family: 'rubikregular';
+  font-weight: 400;
+  font-size: 1rem;
+  background-color: linear-gradient(182.8deg, #270631 0.09%, rgba(89, 8, 114, 0.8) 33.63%, #000000 97.67%);
+}
+
+.DBlock,
+header,
+section,
+footer {
+  float: left;
+  width: 100%;
+  display: block;
+}
+
+.DFlex {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  letter-spacing: normal;
+  text-transform: none;
+  line-height: normal;
+  margin-bottom: 0;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.FocusNone,
+a:focus,
+button:focus,
+textarea:focus,
+input:focus,
+select:focus {
+  box-shadow: none;
+  outline: none !important;
+}
+
+.TransAni {
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.imgCover {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+a,
+a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.w-auto {
+  width: auto !important;
+}
+
+.h-auto {
+  height: auto !important;
+}
+
+button {
+  cursor: pointer;
+}
+
+.textGradient {
+  background-color: #fff;
+  background-image: linear-gradient(45deg, #7250FB, #9547FD, #3FB5F5, #CB38FF);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+
+//Scroll Bar
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+
+  @include Media(575) {
+    width: 3px;
+    height: 3px;
+  }
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 0;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  margin: 2px;
+  border-radius: 10px;
+  background: nth($color, 4);
+}
+
+@media (min-width: 992px) {
+
+  .pricingLarge .modal-lg,
+  .pricingLarge .modal-xl {
+    --bs-modal-width: 1200px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  .modal-dialog {
+    max-width: 80%;
+  }
+}

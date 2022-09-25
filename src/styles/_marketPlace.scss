@@ -1,0 +1,138 @@
+//Market Place Section
+.marketPlacePagae {
+  position: relative;
+
+  .marketNfts {
+    position: relative;
+    padding: 100px 0;
+
+    h3 {
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 50px;
+      @include FontBold(3, 1);
+    }
+
+    select {
+      width: 100%;
+      position: relative;
+      padding: 10px 15px;
+      border: 1px solid nth($color, 1);
+      @include Font(1, 1);
+      @include BorRadius(25px);
+      background: transparent;
+    }
+
+    .searchForm {
+      position: relative;
+      @include BorRadius(25px);
+      background: rgba(14, 6, 61, 0.3);
+      box-shadow: 1px 1px 6px rgba(255, 1, 62, 0.2);
+      padding: 5px 10px;
+      width: 100%;
+
+      svg {
+        font-size: 1.2rem;
+      }
+
+      input {
+        width: calc(100% - 110px);
+        background: transparent;
+        @include Font(1, 1);
+        border: 0;
+        outline: none;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, .7);
+        }
+      }
+
+      button {
+        @include Font(1, 1);
+        @include BorRadius(25px);
+        padding: 5px 10px;
+        background: nth($color, 3);
+        box-shadow: 2px 3px 8px rgba(238, 25, 75, 0.25);
+        border: 1px solid nth($color, 3);
+
+        &:hover {
+          background: transparent;
+        }
+      }
+    }
+
+    .marketNftCards {
+      position: relative;
+
+      .marketNftCard {
+        position: relative;
+        @include BorRadius(10px);
+        overflow: hidden;
+        margin-bottom: 30px;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+
+        .overlay {
+          position: absolute;
+          left: 2%;
+          bottom: 2%;
+          width: 96%;
+          @include BorRadius(10px);
+          background: rgba(0, 0, 0, 0.3);
+          padding: 10px;
+
+          p {
+            @include FontMedium(1, 1);
+            margin-bottom: 3px;
+
+            span {
+              @include Font(1, 1);
+            }
+          }
+
+          button {
+            @include Font(1, 1);
+            background: transparent;
+            border: 0;
+          }
+        }
+      }
+    }
+
+    .nftPagination {
+      position: relative;
+      margin: 50px 0;
+
+      .numberUl {
+        width: fit-content;
+        margin: 0 30px;
+
+        button {
+          @include Font(1, 1);
+          margin: 0 15px;
+          background: transparent;
+          border: 0;
+        }
+      }
+
+      .arrow {
+        @include Flex(center, center);
+        width: 50px;
+        height: 50px;
+        border: 1px solid nth($color, 3);
+        background: transparent;
+        @include Font(1, 1);
+        @include BorRadius(50%);
+
+        svg,
+        polygon {
+          font-size: 1.2rem;
+          fill: #fff
+        }
+      }
+    }
+  }
+}

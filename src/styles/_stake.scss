@@ -1,0 +1,521 @@
+//Stake Card Page
+.stakePage {
+  position: relative;
+  padding: 100px 0;
+
+  @include Media(991) {
+    padding: 50px 15px;
+  }
+
+  @include Media(767) {
+    padding: 50px 0px;
+  }
+
+  .title {
+    position: relative;
+    margin-bottom: 30px;
+
+    h3 {
+      @include FontBold(1.5, 1);
+      text-transform: uppercase;
+      text-shadow: 0px 4px 4px nth($color, 4);
+
+      @include Media(767) {
+        font-size: 1.2rem;
+      }
+    }
+
+    .actionBtns {
+      position: relative;
+      width: auto;
+
+      a {
+        display: block;
+        @include Font(1, 1);
+        margin: 0 20px;
+
+        @include Media(767) {
+          margin: 0 10px;
+          font-size: 0.8rem;
+        }
+      }
+
+      button {
+        @include Flex(center, center);
+        @include BorRadius(50%);
+        @include Font(1, 1);
+        width: 30px;
+        height: 30px;
+        background: nth($color, 4);
+        border: 1px solid nth($color, 3);
+        padding: 0;
+
+        @include Media(767) {
+          width: 25px;
+          height: 25px;
+        }
+
+        svg {
+          font-size: 1.8rem;
+
+          @include Media(767) {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  .heading {
+    position: relative;
+    margin-bottom: 80px;
+
+    @include Media(767) {
+      margin-bottom: 40px;
+      align-items: flex-end;
+    }
+
+    ul {
+      width: fit-content;
+      background: nth($color, 1);
+      @include BorRadius(25px);
+      overflow: hidden;
+
+      button {
+        @include Font(1, 4);
+        padding: 10px 30px;
+        @include BorRadius(25px);
+        border: 0;
+        background: transparent;
+        @include Tran(0.4s, ease-in-out);
+
+        @include Media(767) {
+          font-size: 0.8rem;
+          padding: 5px 15px;
+        }
+
+        &.active,
+        &:hover {
+          color: nth($color, 1);
+          background: linear-gradient(to bottom, #b40fe7, #ff013e);
+        }
+      }
+    }
+
+    .switchText {
+      @include Media(375) {
+        margin-top: 20px;
+      }
+
+      p {
+        @include Font(1, 1);
+        text-transform: capitalize;
+
+        @include Media(767) {
+          font-size: 0.8rem;
+        }
+      }
+
+      .form-switch .form-check-input {
+        box-shadow: none;
+        outline: none;
+      }
+
+      .form-check-input:checked {
+        background-color: nth($color, 4);
+        border-color: nth($color, 4);
+        box-shadow: none;
+        outline: none;
+      }
+    }
+  }
+
+  .comingSoonCard {
+    position: relative;
+    padding: 25px;
+    background: #53006c;
+    box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+    border-radius: 6.58745px;
+    min-height: 400px;
+    border: 1px solid transparent;
+    h2 {
+      text-align: center;
+      @include FontBold(2.5, 1);
+    }
+  }
+
+  .stakeCard {
+    position: relative;
+    padding: 25px;
+    background: #53006c;
+    box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+    border-radius: 6.58745px;
+    border: 1px solid transparent;
+
+    @include Media(1199) {
+      padding: 25px 10px;
+    }
+
+    @include Media(991) {
+      margin-top: 25px;
+    }
+
+    &:hover {
+      border-color: nth($color, 3);
+    }
+
+    .cardHeading {
+      position: relative;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 30px;
+
+      @include Media(344) {
+        flex-wrap: wrap-reverse !important;
+      }
+
+      .headingContent {
+        position: relative;
+
+        h4 {
+          text-transform: uppercase;
+          @include FontBold(2, 1);
+          margin-bottom: 5px;
+
+          @include Media(1199) {
+            font-size: 1.5rem;
+          }
+        }
+
+        p {
+          @include Font(1, 1);
+
+          @include Media(1199) {
+            font-size: 0.8rem;
+          }
+        }
+      }
+
+      .cardImg {
+        position: relative;
+        @include BorRadius(50%);
+        width: 60px;
+        height: 60px;
+        margin-bottom: 10px;
+        background: rgba(14, 6, 61, 0.8);
+        box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+
+        @include Media(1199) {
+          width: 50px;
+          height: 50px;
+
+          img {
+            display: block;
+            width: 30px;
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+
+    .cardBody {
+      position: relative;
+
+      ul {
+        position: relative;
+
+        li {
+          margin-bottom: 10px;
+
+          .progressBar {
+            height: 15px;
+            margin-bottom: 20px;
+
+            .progress-bar {
+              background-color: nth($color, 3);
+            }
+          }
+
+          strong {
+            @include FontMedium(1, 1);
+
+            @include Media(1199) {
+              font-size: 0.8rem;
+            }
+          }
+
+          span {
+            @include FontLight(1, 1);
+          }
+
+          .badgeSpan {
+            padding: 2px 15px 0px;
+            @include FontBold(0.9, 1);
+            color: #00ee98;
+            background: #b40fe7;
+            box-shadow: 1.59568px 1.59568px 15.9568px rgba(255, 1, 62, 0.18);
+            backdrop-filter: blur(159.568px);
+            border-radius: 10.5115px;
+          }
+
+          button {
+            padding: 5px 15px;
+            @include FontMedium(1, 1);
+            border: 0;
+            background: linear-gradient(180deg, #b40fe7 10.28%, #ff013e 100%);
+            box-shadow: 1.59568px 1.59568px 15.9568px rgba(255, 1, 62, 0.18);
+            backdrop-filter: blur(159.568px);
+            border-radius: 50.51px;
+
+            @include Media(1199) {
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+
+      .seeMore {
+        position: relative;
+        @include Flex(center, center);
+        width: fit-content;
+        margin: 30px auto;
+        @include FontBold(1, 1);
+        background: transparent;
+        border: 0;
+
+        svg {
+          margin-left: 5px;
+        }
+      }
+
+      .seeMoreCard {
+        position: relative;
+        background: rgba(180, 15, 231, 0.69);
+        border: 0.5px solid #ffffff;
+        box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+        backdrop-filter: blur(100px);
+        border-radius: 6.58745px;
+        padding: 20px;
+
+        .formGroup {
+          position: relative;
+          margin-bottom: 15px;
+
+          label {
+            text-transform: capitalize;
+            @include FontMedium(1, 1);
+            margin-bottom: 5px;
+          }
+
+          input {
+            @include Font(1, 1);
+            padding: 5px 15px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 0px 4px 34px 3px rgba(0, 0, 0, 0.04);
+            border: 0;
+            @include BorRadius(10px);
+
+            &::placeholder {
+              color: #fff;
+            }
+          }
+        }
+
+        p {
+          margin-bottom: 10px;
+          @include FontMedium(1, 1);
+
+          span {
+            @include FontLight(1, 1);
+          }
+        }
+
+        .btnsDiv {
+          position: relative;
+          margin-top: 30px;
+          @include Flex(center, center);
+          flex-direction: column;
+
+          button {
+            position: relative;
+            width: fit-content;
+            justify-content: flex-start;
+            padding: 5px 20px;
+            border: 1px solid nth($color, 3);
+            background: nth($color, 3);
+            @include FontMedium(0.9, 1);
+            @include BorRadius(25px);
+            @include Tran(0.4s, ease-in-out);
+            margin-bottom: 10px;
+
+            &.outline {
+              border: 1px solid nth($color, 1);
+              background: transparent;
+
+              @include Media(1199) {
+                margin-top: 10px;
+              }
+
+              &:hover {
+                color: nth($color, 3);
+              }
+
+              span {
+                background: nth($color, 3);
+
+                svg,
+                polyline {
+                  color: nth($color, 1);
+                  stroke: nth($color, 1);
+                }
+              }
+            }
+
+            &:hover {
+              background: transparent;
+            }
+
+            span {
+              @include Flex(center, center);
+              background: nth($color, 1);
+              width: 20px;
+              height: 20px;
+              @include BorRadius(50%);
+              @include Font(0.8, 3);
+              margin-left: 5px;
+
+              svg,
+              polyline {
+                color: nth($color, 3);
+                stroke: nth($color, 3);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//Waller Modal
+.walletModal {
+  .modal-body {
+    padding: 0;
+    background: transparent;
+  }
+
+  .walletModalBody {
+    position: relative;
+    background: #53006c;
+    box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+    backdrop-filter: blur(100px);
+    border-radius: 6.58745px;
+    border: 1px solid nth($color, 3);
+    justify-content: center;
+    padding: 50px 20px;
+
+    @include Media(360) {
+      justify-content: flex-start;
+      padding: 50px 15px;
+    }
+
+    .closeBtn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: transparent;
+      border: 0;
+
+      svg {
+        @include Font(1.5, 3);
+      }
+    }
+
+    .walletCard {
+      position: relative;
+      width: fit-content;
+      flex-direction: column;
+      justify-content: center;
+      margin: 30px 15px;
+
+      .cardimg {
+        @include Flex(center, center);
+        width: 60px;
+        height: 60px;
+        @include BorRadius(50%);
+        overflow: hidden;
+        background: nth($color, 1);
+        margin-bottom: 10px;
+
+        img {
+          width: 60%;
+          height: auto;
+        }
+      }
+
+      p {
+        @include Font(1, 1);
+      }
+    }
+  }
+
+  .walletNetwork {
+    position: relative;
+    padding: 30px 10px;
+
+    h3 {
+      @include Font(2, 1);
+    }
+
+    p {
+      @include Font(1, 1);
+    }
+
+    button {
+      @include Font(1, 1);
+      @include BorRadius(25px);
+      background: nth($color, 4);
+      border: 1px solid nth($color, 4);
+      padding: 5px 30px;
+    }
+  }
+
+  .walletConnectionInfo {
+    position: relative;
+    padding: 30px 10px;
+
+    button {
+      @include Flex(center, center);
+      width: fit-content;
+      flex-direction: column;
+      background: transparent;
+      border: 0;
+      @include Font(1, 1);
+      margin: 10px 15px;
+
+      img {
+        display: block;
+        width: 80px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.stakeNFTBtnDiv,
+.buyNFTBtnDiv {
+  position: relative;    
+    background: #53006c;
+    box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+    border-radius: 6.58745px;
+    width: 200px;
+    height: 50px;    
+    margin: auto;
+    margin-top: 20px;
+    // min-height: 200px;
+    border: 1px solid transparent;
+    @include Font(1.2,1);
+    cursor: pointer;
+}

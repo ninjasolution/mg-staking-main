@@ -1,0 +1,430 @@
+.servicesPage {
+  position: relative;
+
+  @include Media(767) {
+    padding: 0 15px;
+  }
+}
+
+//support wallet section
+.supportWalletSec {
+  position: relative;
+  padding: 100px 0;
+
+  @include Media(991) {
+    padding: 30px 0;
+  }
+
+  @include Title(capitalize);
+
+  .supportWalletWrapper {
+    background: linear-gradient(0deg,
+        rgba(180, 15, 231, 0.15),
+        rgba(180, 15, 231, 0.15)),
+      rgba(196, 196, 196, 0.1);
+    box-shadow: 0px 4px 8px rgba(175, 175, 175, 0.15);
+
+    @include Media(991) {
+      background: none;
+      box-shadow: none
+    }
+
+    @include BorRadius(16px);
+
+    .leftSec {
+      @include Media(991) {
+        display: none;
+      }
+
+      position: relative;
+
+      .leftImg {
+        position: absolute;
+        left: -10%;
+        bottom: 0%;
+      }
+    }
+
+    .middleSec {
+      background: rgba(14, 6, 61, 0.3);
+      box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+      backdrop-filter: blur(100px);
+      border-radius: 8px;
+      margin: 40px 0;
+
+      .contentWrapper {
+        padding: 30px 15px;
+
+        .detailContent {
+          h2 {
+            @include FontBold(1.5, 1);
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            padding: 0 0 10px;
+          }
+
+          span {
+            @include Font(1, 8);
+            font-weight: 600;
+          }
+
+          .marketAprSec {
+            @include Font(1.1, 1);
+
+            .title {
+              padding-bottom: 10px;
+            }
+
+            .apr {
+              padding-left: 20px;
+            }
+          }
+        }
+
+        button {
+          @include Flex(center, center);
+          width: fit-content;
+          padding: 8px 15px;
+          @include Font(1, 1);
+          border: 0;
+          @include BorRadius(25px);
+          background: linear-gradient(295.58deg,
+              #ff43bb -3.12%,
+              #ff013e 94.92%);
+
+          span {
+            @include Flex(center, center);
+            margin-left: 20px;
+            width: 20px;
+            height: 20px;
+            background: nth($color, 1);
+            @include BorRadius(50%);
+            color: nth($color, 3);
+          }
+        }
+      }
+    }
+
+    .rightSec {
+      position: relative;
+
+      @include Media(991) {
+        display: none;
+      }
+
+      .rightImg {
+        width: 80%;
+        position: absolute;
+        right: 0%;
+        bottom: 0%;
+      }
+    }
+  }
+}
+
+//node validator section
+.nodeValidatorSec {
+  position: relative;
+  padding: 100px 0;
+
+  @include Media(991) {
+    padding: 30px 0;
+  }
+
+  @include Title(uppercase);
+
+  .title {
+    p {
+      text-transform: none;
+    }
+  }
+
+  .validatorContent {
+    @include BorRadius(16px);
+    @include Tran(0.4s, ease-in-out);
+    height: 100%;
+    padding: 25px 20px;
+    background: linear-gradient(0deg,
+        rgba(180, 15, 231, 0.15),
+        rgba(180, 15, 231, 0.15)),
+      rgba(196, 196, 196, 0.1);
+    box-shadow: 0px 4px 8px rgba(175, 175, 175, 0.15);
+    border: 1.5px solid transparent;
+
+    &:hover {
+      @include BorRadius(16px);
+      background: rgba(14, 6, 61, 0.3);
+      box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+      backdrop-filter: blur(100px);
+      border: 1.5px solid rgba(180, 15, 231, 1);
+    }
+
+    .totalStake {
+      span {
+        @include Font(1.2, 1);
+        font-weight: 100;
+        padding-left: 5px;
+      }
+    }
+
+    h2 {
+      @include FontBold(2.1, 1);
+      font-weight: 700;
+      padding: 10px 0;
+    }
+
+    h3 {
+      @include FontBold(1.1, 1);
+    }
+
+    .latestSign {
+      @include BorRadius(10px);
+      background: rgba(14, 6, 61, 0.3);
+      box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+      backdrop-filter: blur(100px);
+      padding: 15px;
+
+      p {
+        @include Font(1.1, 1);
+      }
+
+      span {
+        @include FontBold(1, 1);
+      }
+    }
+  }
+}
+
+//supportWalletDetailSec page
+.supportWalletDetailSec {
+  position: relative;
+  padding: 100px 0;
+
+  @include Media(991) {
+    padding: 30px 5px;
+  }
+
+  @include Title(uppercase);
+
+  .title {
+    text-align: center;
+  }
+
+  .supportWalletDetailDiv {
+    position: relative;
+    background: #53006C;
+    box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+    backdrop-filter: blur(100px);
+    border-radius: 6.58745px;
+    padding: 50px 100px;
+    margin-top: 50px;
+
+    @include Media(991) {
+
+      .starImg,
+      .liteCoin,
+      .topRightRing,
+      .topLeftRing,
+      .topRightRing,
+      .bottomRing,
+      .mobileImg {
+        display: none;
+      }
+
+      padding: 50px 20px;
+    }
+
+    .starImg {
+      width: 20%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .liteCoin {
+      position: absolute;
+      top: -4%;
+      left: 40%;
+    }
+
+    .topRightRing {
+      width: 15%;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .bottomRing {
+      width: 5%;
+      position: absolute;
+      right: 0;
+      bottom: 0%;
+    }
+
+    .mobileImg {
+      width: 40%;
+      position: absolute;
+      left: -10%;
+      bottom: -6%;
+    }
+
+    .topContentWrap {
+      margin-bottom: 40px;
+
+      .topDes {
+        h2 {
+          @include FontBold(1.9, 1);
+          letter-spacing: 0.05em;
+          padding: 20px 0;
+        }
+
+        p {
+          @include Font(1, 3);
+          font-weight: 600;
+        }
+
+        h4 {
+          @include Font(1.2, 1);
+          font-weight: 500;
+          padding: 20px 0;
+
+          &.supportWallet {
+            padding: 15px 0;
+          }
+        }
+
+        .megaFan {
+          @include Flex(flex-start, center);
+
+          .cardImg {
+            position: relative;
+            @include BorRadius(50%);
+            width: 25px;
+            height: 25px;
+            background: rgba(14, 6, 61, 0.8);
+            box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+
+            img {
+              width: 40%;
+            }
+          }
+
+          p {
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+
+    .middleContentWrap {
+      background: rgba(14, 6, 61, 0.3);
+      box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+      backdrop-filter: blur(100px);
+      border-radius: 8px;
+      padding: 40px 30px;
+
+      h1 {
+        @include FontBold(1.8, 1);
+        padding: 20px 0 30px;
+      }
+
+      button {
+        @include Flex(center, center);
+        width: fit-content;
+        text-transform: capitalize;
+        height: auto;
+        padding: 8px 15px;
+        @include Font(1, 1);
+        border: 1px solid nth($color, 1);
+        @include BorRadius(25px);
+        background: transparent;
+
+        span {
+          @include Flex(center, center);
+          margin-left: 20px;
+          width: 20px;
+          height: 20px;
+          background: nth($color, 3);
+          @include BorRadius(50%);
+          color: nth($color, 1);
+        }
+      }
+
+      .middleRightDes {
+        h1 {
+          @include FontBold(1.6, 1);
+        }
+
+        .nodesDes {
+          @include Flex(space-between, center);
+
+          .nodesValidator {
+            h4 {
+              @include Font(1.1, 1);
+              font-weight: 500;
+              padding: 12px 0;
+            }
+
+            p {
+              @include Font(1, 3);
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+
+    .lastContentWrap {
+      background: rgba(14, 6, 61, 0.3);
+      box-shadow: 1px 1px 10px rgba(255, 1, 62, 0.18);
+      backdrop-filter: blur(100px);
+      border-radius: 8px;
+      padding: 20px 30px;
+      margin-top: 20px;
+
+      @include Media(500) {
+        flex-flow: column wrap;
+        align-items: flex-start
+      }
+
+      .beaconNode {
+        h1 {
+          @include FontBold(1.5, 1);
+        }
+
+        p {
+          @include Font(1, 3);
+          font-weight: 600;
+        }
+      }
+
+      .notifyBtn {
+        @include Media(767) {
+          margin-top: 20px;
+        }
+
+        button {
+          @include Flex(center, center);
+          width: fit-content;
+          text-transform: capitalize;
+          height: auto;
+          padding: 8px 15px;
+          @include Font(1, 1);
+          border: 1px solid nth($color, 3);
+          @include BorRadius(25px);
+          background: transparent;
+
+          span {
+            @include Flex(center, center);
+            margin-left: 20px;
+            width: 20px;
+            height: 20px;
+            background: nth($color, 1);
+            @include BorRadius(50%);
+            color: nth($color, 3);
+          }
+        }
+      }
+    }
+  }
+}

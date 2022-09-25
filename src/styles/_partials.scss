@@ -1,0 +1,311 @@
+//Page Layout
+.pageLayout {
+  position: relative;
+
+  .topRecImg {
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 300px;
+    height: auto;
+  }
+
+  .topStarImg {
+    position: absolute;
+    top: -28px;
+    left: 28%;
+    width: 90px;
+    height: auto;
+  }
+
+  .topCircleImg {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 100px;
+    height: auto;
+  }
+}
+
+//Header CSS
+.header {
+  position: relative;
+  padding: 50px 0;
+  z-index: 99;
+
+  @include Media(991) {
+    padding: 20px 15px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(182.8deg, #270631 0.09%, rgba(89, 8, 114, 1) 33.63%, #000000 97.67%);
+  }
+
+  .navbar-toggler {
+    background: white;
+    color: purple;
+    font-size: 15px;
+    padding: 3px 8px;
+    box-shadow: none;
+    outline: none;
+
+    @include Media(575) {
+      font-size: 12px;
+      padding: 2px 5px;
+    }
+  }
+
+  .headerLink {
+    @include Font(1, 1);
+    margin: 0 15px;
+
+    @include Media(991) {
+      margin: 5px 0;
+    }
+
+    @include Tran(.4s, ease-in-out);
+    letter-spacing: 0.7px;
+
+    &.active,
+    &:hover {
+      font-weight: bold;
+    }
+  }
+
+  .langSelect {
+    @include Font(1, 1);
+    text-transform: uppercase;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .signInBtn {
+    @include Font(1.3, 1);
+    margin-left: 10px;
+  }
+  
+  @include Media(991) {
+    .dropdown-menu[data-bs-popper] {
+      left:0;
+      right: auto;
+      position:relative;
+    }
+  }
+  .profileDropDownBtn {
+    @include Flex(center, center);
+    margin-left: 10px;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    border: 1px solid nth($color, 4);
+    @include BorRadius(50%);
+    overflow: hidden;
+
+    @include Media(991) {
+      margin:10px 0;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.dropdown-menu[data-bs-popper] {
+  left: auto;
+  right: 0;
+}
+
+.dropdown-menu {
+  padding: 0;
+  background: linear-gradient(182.8deg, rgba(89, 8, 114, 0.8), #270631);
+
+  a {
+    display: block;
+    @include Font(1, 1);
+    padding: 10px 15px 0;
+  }
+
+  hr {
+    border-color: #fff;
+  }
+
+  button {
+    display: block;
+    @include Font(1, 1);
+    background: transparent;
+    border: 0;
+    padding: 0 15px 10px;
+  }
+}
+
+//Backward Header
+.backHeaderDiv {
+  position: relative;
+  padding: 50px 0;
+  z-index: 99;
+
+  @include Media(991) {
+    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(182.8deg, #270631 0.09%, rgba(89, 8, 114, 1) 33.63%, #000000 97.67%);
+  }
+
+  .posLink {
+    @include Flex(center, center);
+    width: fit-content;
+    @include FontBold(1, 1);
+
+    span {
+      @include Media(480) {
+        display: none;
+      }
+    }
+
+    svg,
+    polyline {
+      margin-right: 2px;
+      font-size: 1.5rem;
+      color: nth($color, 1);
+      stroke: nth($color, 1);
+
+      @include Media(480) {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .headerLogo {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.childComponent {
+  padding: 140px 0;
+}
+
+//Footer
+footer {
+  position: relative;
+  padding: 90px 0 50px;
+
+  @include Media(767) {
+    padding: 75px 10px 50px;
+  }
+
+  .footerPosImg {
+    position: absolute;
+    top: -330px;
+    left: -30px;
+    width: 300px;
+    height: auto;
+
+    @include Media(991) {
+      display: none;
+    }
+  }
+
+  .footerLogo {
+    position: relative;
+
+    img {
+      width: 200px;
+      height: auto;
+    }
+  }
+
+  .footerLinks {
+    position: relative;
+
+    h6 {
+      margin-bottom: 30px;
+      @include FontMedium(1.2, 1);
+
+      @include Media(767) {
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+    }
+
+    a {
+      display: block;
+      margin-bottom: 10px;
+      @include Font(1, 1);
+    }
+  }
+
+  .footerPayment {
+    position: relative;
+
+    p {
+      @include FontMedium(1.8, 1);
+      margin-bottom: 50px;
+
+      @include Media(767) {
+        @include FontMedium(1.5, 1);
+      }
+    }
+
+    .paymentImgs {
+      @include Media(1199) {
+        justify-content: flex-start !important;
+      }
+
+      button {
+        @include Media(1199) {
+          margin: 0 15px;
+        }
+
+        @include Media(991) {
+          margin: 0 5px;
+        }
+
+        @include BorRadius(5px);
+        @include Flex(center, center);
+        border: 0;
+        background: rgba(224, 224, 224, 0.1);
+        display: block;
+        width: 75px;
+        height: 50px;
+        @include Font(2, 1);
+      }
+    }
+  }
+
+  .cprytDiv {
+    position: relative;
+    margin-top: 100px;
+    padding: 15px 0;
+
+    @include Media(767) {
+      margin-top: 50px;
+    }
+
+    .cprytContent {
+      @include Media(767) {
+        flex-flow: column wrap;
+        justify-content: center !important;
+      }
+
+      p {
+        @include Font(1, 1);
+
+        @include Media(575) {
+          @include Font(0.8, 1);
+        }
+      }
+    }
+  }
+}
