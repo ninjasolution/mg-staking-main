@@ -16,8 +16,8 @@ import WalletConnectProvider from '@walletconnect/web3-provider';
 import nftABI from 'config/nft.json';
 import stakingABI from 'config/staking.json';
 
-const nftAddr = '0x9fEa1aA65fD27844Bb95ae4B02a555bf14CFdE4E';
-const stakingAddr = '0x42461C5513cd634FE1A4634e0F5d5f15078f4C38';
+const nftAddr = '0xaBEe4fab21E4632688C849d397294BBd404900ce';
+const stakingAddr = '0x14DF9445ACBfC26FC8965f8CF1E773E01C966D63';
 
 let nftContract, stakingContract;
 
@@ -27,7 +27,7 @@ const providerOptions = {
     options: {
         rpc: {
             1: "https://rpc.ankr.com/eth",
-            4: "https://rinkeby.infura.io/v3/bd2501a22a1c427f8af23d3fb5a264bf"
+            3: "https://ropsten.infura.io/v3/bd2501a22a1c427f8af23d3fb5a264bf"
         },
         bridge: 'https://bridge.walletconnect.org/',
         qrcode: true
