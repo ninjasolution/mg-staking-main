@@ -5,7 +5,8 @@ import Layout from 'layouts/Layout';
 import { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { AiOutlineRight } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUserProfile } from 'redux/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
@@ -68,6 +69,7 @@ const EditProfile = () => {
         }
       );
       if (result?.status === 200 && result?.data?.success) {
+        dispatch(getUserProfile(auth?.user?.token));
         navigate('/profile');
         toast.success(result?.data?.message);
       } else toast.error(result?.data?.message);
