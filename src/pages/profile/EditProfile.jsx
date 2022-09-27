@@ -12,6 +12,7 @@ import Select from 'react-select';
 import { toast } from 'react-toastify';
 
 const EditProfile = () => {
+  const dispatch = useDispatch();
   const { auth } = useSelector((state) => state);
   const [formValues, setFormValues] = useState({
     username: auth?.userProfile?.username,
