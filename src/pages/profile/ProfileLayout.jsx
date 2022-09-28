@@ -17,7 +17,7 @@ import nftABI from 'config/nft.json';
 import stakingABI from 'config/staking.json';
 
 const nftAddr = '0xaBEe4fab21E4632688C849d397294BBd404900ce';
-const stakingAddr = '0x14DF9445ACBfC26FC8965f8CF1E773E01C966D63';
+const stakingAddr = '0x465D1732D2ba5aA2a4ef95619ac7751C5A3c4324';
 
 let nftContract, stakingContract;
 

@@ -95,6 +95,14 @@ const EditProfile = () => {
         headers: { Authorization: `Bearer ${auth?.user?.token}` },
       });
       if (result?.status === 200 && result?.data?.success) {
+        let originalValue = auth?.user;
+        const newValue = {
+          ...originalValue,
+          image: formValues.imageUri,
+          username: formValues.username,
+          email: formValues.email         
+        };
+        dispatch(loginUserSuccess(newValue));
         setIsLoading(false);
         navigate('/profile');
         toast.success(result?.data?.message);
