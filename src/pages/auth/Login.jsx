@@ -55,7 +55,7 @@ const Login = () => {
         await setLoginUser(result?.data?.data);
         if (auth?.walletInfo?.account && auth?.walletInfo?.isConnected)
           return handleWallet(result?.data?.data?.token, result?.data?.data);
-          dispatch(loginUserSuccess(loginUser));
+          dispatch(loginUserSuccess(result?.data?.data));
         handleShow();
       }
     } catch (error) {
