@@ -53,8 +53,8 @@ const Login = () => {
         throw new Error(result?.data?.message);
       } else {
         setLoginUser(result?.data?.data);
-        //if (auth?.walletInfo?.account && auth?.walletInfo?.isConnected)
-          // return handleWallet(result?.data?.data?.token, result?.data?.data);
+        if (auth?.walletInfo?.account && auth?.walletInfo?.isConnected)
+          return handleWallet(result?.data?.data?.token, result?.data?.data);
           dispatch(loginUserSuccess(loginUser));
         handleShow();
       }
