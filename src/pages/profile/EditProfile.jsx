@@ -80,7 +80,7 @@ const EditProfile = () => {
           ...originalValue,
           image: result?.data?.imageURI
         };
-        dispatch(loginUserSuccess(auth?.user?.token));
+        dispatch(loginUserSuccess(newValue));
         navigate('/profile');
         toast.success(result?.data?.message);
       } else toast.error(result?.data?.message);
