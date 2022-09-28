@@ -78,7 +78,7 @@ const EditProfile = () => {
         let originalValue = auth?.user;
         const newValue = {
           ...originalValue,
-          image: result?.data?.data?.image
+          image: result?.data?.imageURI
         };
         dispatch(loginUserSuccess(auth?.user?.token));
         navigate('/profile');
