@@ -23,7 +23,7 @@ const getLibrary = (provider) => {
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_API || 'https://websiteapi.megafans.io/',
   headers: {
-    Connection: 'keep-alive',
+    // 'Connection': 'keep-alive',
     'Content-Type': 'application/json',
   },
 });
