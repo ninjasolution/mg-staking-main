@@ -75,10 +75,10 @@ const EditProfile = () => {
         }
       );
       if (result?.status === 200 && result?.data?.success) {    
-        let originalValue = auth.user;    
+        let originalValue = auth?.user;
         const newValue = {
           ...originalValue,
-          image: result.data.data.image
+          image: result?.data?.data?.image
         };
         dispatch(loginUserSuccess(auth?.user?.token));
         navigate('/profile');
