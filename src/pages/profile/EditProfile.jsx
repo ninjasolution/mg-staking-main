@@ -10,6 +10,11 @@ import { getUserProfile } from 'redux/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
+import {
+  loginUserFail,
+  loginUserPending,
+  loginUserSuccess,
+} from 'redux/auth/authSlice';
 
 const EditProfile = () => {
   const dispatch = useDispatch();
@@ -69,8 +74,13 @@ const EditProfile = () => {
           headers: { Authorization: `Bearer ${auth?.user?.token}` },
         }
       );
-      if (result?.status === 200 && result?.data?.success) {
-        dispatch(getUserProfile(auth?.user?.token));
+      if (result?.status === 200 && result?.data?.success) {    
+        let originalValue = auth.user;    
+        const newValue = {
+          ...originalValue,
+          image: result.data.data.image
+        };
+        dispatch(loginUserSuccess(auth?.user?.token));
         navigate('/profile');
         toast.success(result?.data?.message);
       } else toast.error(result?.data?.message);
