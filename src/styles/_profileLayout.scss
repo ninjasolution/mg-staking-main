@@ -592,6 +592,13 @@
     justify-content: center;
     padding: 50px 20px;
 
+    .table{
+      color: white;
+    }
+    .btn-group{
+      color: white;
+    } 
+
     @include Media(360) {
       justify-content: flex-start;
       padding: 50px 15px;
@@ -672,6 +679,10 @@
           &.outline {
             border-color: nth($color, 1);
             background: transparent;
+          }
+          &.history { 
+            border: 1px solid #0036b5;           
+            background: #0036b5;
           }
         }
       }

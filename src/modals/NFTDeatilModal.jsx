@@ -1,13 +1,33 @@
 import PricingCard from 'components/pricing/PricingCard';
 import { pricingList } from 'helpers/helper';
 import { useState, useEffect } from 'react';
-import { Modal, Row, Col } from 'react-bootstrap';
+import { Modal, Row, Col, Table } from 'react-bootstrap';
 import { MdCancel } from 'react-icons/md';
 import ConguragsNFTMsg from './ConguragsNFTMsg';
 import PaymentCard from './PaymentCard';
 import axios from 'axios';
+import {
+  DatatableWrapper,
+  Filter,
+  Pagination,
+  // PaginationOpts,
+  TableBody,
+  TableHeader
+} from 'react-bs-datatable';
+import { instance } from 'index';
+
+
+const headers = [
+  { title: 'ID', prop: 'id' },
+  { title: 'GameName', prop: 'gameName' },
+  { title: 'Tournament', prop: 'tornament' },
+  { title: 'Date', prop: 'date' },
+  { title: 'Percent', prop: 'percent' },
+  { title: 'Tokens', prop: 'tokens' },
+];
 
 const NFTDeatilModal = ({
+  auth,
   id,
   walletAddress,
   nftContract,
@@ -20,11 +40,22 @@ const NFTDeatilModal = ({
   notifyError,
   updateData,
   pricing
-}) => {
-  const [isCC, setIsCC] = useState(page === 'pricing' ? true : false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isPricing, setIsPricing] = useState(false);
+}) => {  
   const [nftInfo, setNftInfo] = useState({});  
+  const [isHistory, setIsHistory] = useState(false);
+  const [historyData, setHistoryData] = useState([]);
+
+  const fetchHistoryData = async () => {
+    try {
+      const result = await instance.get(`api/NFT/ListNFTRewards?PageNumber=1&PageSize=100&nftId=${id}' `, {
+        headers: { Authorization: `Bearer ${auth?.user?.token}` },
+      });
+      if (result?.status === 200) setHistoryData(result?.data?.data);
+    } catch (error) {
+      notifyError(error);
+      throw error;
+    }
+  }
  
   useEffect(()=>{
     if (id){
@@ -35,9 +66,7 @@ const NFTDeatilModal = ({
           setNftInfo(info);
         });
       });
-    }    
-    if (pricing){
-      setIsPricing(pricing);
+      fetchHistoryData();
     }
   }, []);
 
@@ -73,7 +102,7 @@ const NFTDeatilModal = ({
 
   return (
     <Modal
-      className={`nftDeatilModal ${isPricing && 'pricingLarge'}`}
+      className={`nftDeatilModal`}
       show={show}
       size='lg'
       onHide={handleClose}
@@ -84,15 +113,13 @@ const NFTDeatilModal = ({
           <button
             className='closeBtn'
             onClick={() => {
-              handleClose();
-              setIsSuccess(false);
-              setIsCC(false);
-              setIsPricing(false);
+              handleClose();           
+              setIsHistory(false);
             }}>
             <MdCancel />
           </button>
           <div className='nftDeatilModalDiv DBlock'>
-            {page !== 'pricing' && !isPricing && !isCC && !isSuccess && (
+            {page !== 'pricing' && !isHistory && (
               <Row>
                 <Col sm={12} md={5}>
                   <div className='detailImg DBlock'>
@@ -124,72 +151,70 @@ const NFTDeatilModal = ({
                       </Col> */}
                     </Row>
                     <div className='btnDivs DFlex justify-content-start'>
-                      {page === 'staking' ? (
+                      {
                         <>
                           <button
                             onClick={() => {
-                              handleClose();
-                              setIsSuccess(false);
-                              setIsCC(false);
-                              setIsPricing(false);
+                              handleClose();                           
+                              setIsHistory(false);
                             }}
                             className='outline DFlex justify-content-center'>
                             Cancel
                           </button>
+                          {
+                          !isStack && <button
+                            onClick={()=>{setIsHistory(true)}}
+                            className='history DFlex justify-content-center'>      
+                            History                      
+                          </button>
+                          }
                           <button
                             onClick={onClickStake}
-                            className='DFlex justify-content-center'>
+                            className='historyDFlex justify-content-center'>
                             {isStack ? 'Stake NFT' : 'Unstake NFT'}
                           </button>
                         </>
-                      ) : (
-                        <button
-                          onClick={() => setIsPricing(true)}
-                          className='DFlex justify-content-center'>
-                          Buy
-                        </button>
-                      )}
+                      }
                     </div>
                   </div>
                 </Col>
               </Row>
             )}
-            {isPricing && !isSuccess && !isCC && (
-              <div className='tabListing DBlock'>
-                <Row>
-                  <div className='DFlex justify-content-center'>
-                    {pricingList?.map((list, ind) => (
-                      <Col
-                        sm={12}
-                        md={6}
-                        lg={4}
-                        xl={3}
-                        key={`PricingModalListCardKey${ind}`}>
-                        <div className='mx-3 my-4'>
-                          <PricingCard
-                            list={list}
-                            level={list?.id}
-                            handleShow={() => {
-                              setIsPricing(false);
-                              setIsSuccess(true);
-                            }}
-                          />
-                        </div>
-                      </Col>
-                    ))}
-                  </div>
-                </Row>
-              </div>
-            )}
-            {isCC && !isSuccess && !isPricing && (
-              <PaymentCard
-                setIsCC={setIsCC}
-                setIsSuccess={setIsSuccess}
-                handleClose={handleClose}
-                page={page}
-              />
-            )}
-            {isSuccess && !isPricing && !isCC && <ConguragsNFTMsg />}
+            {isHistory && (
+              <Row>
+                <DatatableWrapper body={historyData} headers={headers}>
+                  <Row className="mb-4">
+                    <Col
+                      xs={12}
+                      lg={4}
+                      className="d-flex flex-col justify-content-end align-items-end"
+                    >
+                      <Filter />
+                    </Col>
+                    <Col
+                      xs={12}
+                      sm={6}
+                      lg={4}
+                      className="d-flex flex-col justify-content-lg-center align-items-center justify-content-sm-start mb-2 mb-sm-0"
+                    >
+                      {/* <PaginationOpts /> */}
+                    </Col>
+                    <Col
+                      xs={12}
+                      sm={6}
+                      lg={4}
+                      className="d-flex flex-col justify-content-end align-items-end"
+                    >
+                      <Pagination />
+                    </Col>
+                  </Row>
+                  <Table>
+                    <TableHeader />
+                    <TableBody />
+                  </Table>
+                </DatatableWrapper>
+              </Row>
+            )}            
           </div>
         </div>
       </Modal.Body>

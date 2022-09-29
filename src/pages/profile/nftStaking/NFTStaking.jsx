@@ -260,6 +260,7 @@ const NFTStaking = () => {
       </div>
       {isStack && (
         <NFTDeatilModal
+          auth={auth}
           id={selID}
           walletAddress={walletAddress}
           nftContract={nftContract}
