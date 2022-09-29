@@ -16,8 +16,8 @@ import WalletConnectProvider from '@walletconnect/web3-provider';
 import nftABI from 'config/nft.json';
 import stakingABI from 'config/staking.json';
 
-const nftAddr = '0xf2438ac0ca233e14ba00C82c6612338c48d50507';
-const stakingAddr = '0xB02f7F76fFf894Ee1cBebc28747fbA9F4ADfcbBf';
+const nftAddr = '0xaBEe4fab21E4632688C849d397294BBd404900ce';
+const stakingAddr = '0x465D1732D2ba5aA2a4ef95619ac7751C5A3c4324';
 
 let nftContract, stakingContract;
 
