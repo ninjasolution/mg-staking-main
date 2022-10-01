@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfile } from 'redux/auth/authSlice';
 import { useEffect, useState } from 'react';
 import Loader from 'components/common/Loader';
-import { instance } from 'index';
 
 
 import Web3 from 'web3';
@@ -58,9 +57,7 @@ const web3Modal = new Web3Modal({
 
 
 const ProfileLayout = () => {
-  const { auth } = useSelector((state) => state);
-  const dispatch = useDispatch();
-  
+
   const [connected, setConnected] = useState(false);
   const [walletAddress, setWalletAddress] = useState('');  
   const [web3, setWeb3] = useState(null);  
@@ -71,7 +68,7 @@ const ProfileLayout = () => {
     provider.on('close', () => onDisconnect());
 
     provider.on('accountsChanged', async (accounts) => {
-      setWalletAddress(accounts[0]);      
+      setWalletAddress(accounts[0]);
     });
 
     provider.on('chainChanged', async (chainId) => {      
@@ -84,7 +81,7 @@ const ProfileLayout = () => {
         // location.reload();
       }
     });    
-  };  
+  };
 
   const onConnect = async () => {    
     const provider = await web3Modal.connect();
@@ -129,31 +126,14 @@ const ProfileLayout = () => {
     connectAsync();
   }, []);
 
+
+  
+  const { auth } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (auth?.user?.token) dispatch(getUserProfile(auth?.user?.token));
   }, []);
-
-  const handleWallet = async (address) => {
-    try {
-      await instance.post(
-        'api/NFT/wallet',
-        { walletAddress: address },
-        {
-          headers: {
-            Authorization: `Bearer ${auth?.user?.token}`,
-          },
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (walletAddress !== ''){
-      handleWallet(walletAddress);
-    }
-  }, [walletAddress]);
 
   return (
     <div className='profileLayout DBlock'>
