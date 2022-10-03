@@ -6,16 +6,24 @@ import { MdCancel } from 'react-icons/md';
 import ConguragsNFTMsg from './ConguragsNFTMsg';
 import PaymentCard from './PaymentCard';
 import axios from 'axios';
-import DataTable from 'react-data-table-component';
+import {
+  DatatableWrapper,
+  Filter,
+  Pagination,
+  // PaginationOpts,
+  TableBody,
+  TableHeader
+} from 'react-bs-datatable';
 import { instance } from 'index';
 
-const columns = [
-  { name: 'ID', selector: 'id', width: '100px' },
-  { name: 'GameName', selector: 'gameName', width: '100px' },
-  { name: 'Tournament', selector: 'tournament', width: '205px' },
-  { name: 'Date', selector: 'date', width: '170px' },
-  { name: 'Percent', selector: 'percent', width: '80px' },
-  { name: 'Tokens', selector: 'tokens', width: '100px' },
+
+const headers = [
+  { title: 'ID', prop: 'id' },
+  { title: 'GameName', prop: 'gameName' },
+  { title: 'Tournament', prop: 'tornament' },
+  { title: 'Date', prop: 'date' },
+  { title: 'Percent', prop: 'percent' },
+  { title: 'Tokens', prop: 'tokens' },
 ];
 
 const NFTDeatilModal = ({
@@ -36,18 +44,13 @@ const NFTDeatilModal = ({
   const [nftInfo, setNftInfo] = useState({});  
   const [isHistory, setIsHistory] = useState(false);
   const [historyData, setHistoryData] = useState([]);
-  const [totalWon, setTotalWon] = useState(0);
 
   const fetchHistoryData = async () => {
     try {
-      let result = await instance.get(`api/NFT/ListNFTRewards?PageNumber=1&PageSize=100&nftId=${id}`, {
+      const result = await instance.get(`api/NFT/ListNFTRewards?PageNumber=1&PageSize=100&nftId=${id}`, {
         headers: { Authorization: `Bearer ${auth?.user?.token}` },
       });
       if (result?.status === 200) setHistoryData(result?.data?.data);
-      result = await instance.get(`/api/NFT/ListTotalNFTRewards?nftId=${id}`, {
-        headers: { Authorization: `Bearer ${auth?.user?.token}` },
-      });
-      if (result?.status === 200) setTotalWon(result?.data?.data);
     } catch (error) {
       notifyError(error);
       throw error;
@@ -110,8 +113,8 @@ const NFTDeatilModal = ({
           <button
             className='closeBtn'
             onClick={() => {
-              setIsHistory(false);
               handleClose();           
+              setIsHistory(false);
             }}>
             <MdCancel />
           </button>
@@ -142,14 +145,6 @@ const NFTDeatilModal = ({
                         <h6>Assigend Level:</h6>
                         <p>{nftInfo.level}</p>
                       </Col>
-                      {
-                        !isStack && (
-                          <Col sm={12} md={6}>
-                            <h6>Tokens won from staking:</h6>
-                            <p>{totalWon}</p>
-                          </Col>
-                        )
-                      }
                       {/* <Col sm={12} md={6}>
                         <h6>Date:</h6>
                         <p>12-12-2022</p>
@@ -185,14 +180,40 @@ const NFTDeatilModal = ({
                 </Col>
               </Row>
             )}
-            {isHistory && (              
-              <DataTable
-                title=""
-                columns={columns}
-                data={historyData}
-                pagination      
-                // customStyles={customStyles}            
-              />              
+            {isHistory && (
+              <Row>
+                <DatatableWrapper body={historyData} headers={headers}>
+                  <Row className="mb-4">
+                    <Col
+                      xs={12}
+                      lg={4}
+                      className="d-flex flex-col justify-content-end align-items-end"
+                    >
+                      <Filter />
+                    </Col>
+                    <Col
+                      xs={12}
+                      sm={6}
+                      lg={4}
+                      className="d-flex flex-col justify-content-lg-center align-items-center justify-content-sm-start mb-2 mb-sm-0"
+                    >
+                      {/* <PaginationOpts /> */}
+                    </Col>
+                    <Col
+                      xs={12}
+                      sm={6}
+                      lg={4}
+                      className="d-flex flex-col justify-content-end align-items-end"
+                    >
+                      <Pagination />
+                    </Col>
+                  </Row>
+                  <Table>
+                    <TableHeader />
+                    <TableBody />
+                  </Table>
+                </DatatableWrapper>
+              </Row>
             )}            
           </div>
         </div>
