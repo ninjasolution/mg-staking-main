@@ -120,7 +120,7 @@ const NFTStaking = () => {
   }
 
   useEffect(() => {
-    if (walletAddress) {
+    if (walletAddress !== '') {
       getUserOwnNFT(walletAddress);
     } else {
       setUserOwnNFT([]);
