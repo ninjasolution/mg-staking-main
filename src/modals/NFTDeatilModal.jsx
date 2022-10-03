@@ -20,7 +20,7 @@ import { instance } from 'index';
 const headers = [
   { title: 'ID', prop: 'id' },
   { title: 'GameName', prop: 'gameName' },
-  { title: 'Tournament', prop: 'tornament' },
+  { title: 'Tournament', prop: 'tournament' },
   { title: 'Date', prop: 'date' },
   { title: 'Percent', prop: 'percent' },
   { title: 'Tokens', prop: 'tokens' },
@@ -55,7 +55,7 @@ const NFTDeatilModal = ({
       result = await instance.get(`/api/NFT/ListTotalNFTRewards?nftId=${id}`, {
         headers: { Authorization: `Bearer ${auth?.user?.token}` },
       });
-      if (result?.status === 200) setTotalWon(result?.data?.data);
+      if (result?.status === 200) setTotalWon(result?.data?.totalRewards);
     } catch (error) {
       notifyError(error);
       throw error;
