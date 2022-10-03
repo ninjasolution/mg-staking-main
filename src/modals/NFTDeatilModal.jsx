@@ -44,13 +44,18 @@ const NFTDeatilModal = ({
   const [nftInfo, setNftInfo] = useState({});  
   const [isHistory, setIsHistory] = useState(false);
   const [historyData, setHistoryData] = useState([]);
+  const [totalWon, setTotalWon] = useState(0);
 
   const fetchHistoryData = async () => {
     try {
-      const result = await instance.get(`api/NFT/ListNFTRewards?PageNumber=1&PageSize=100&nftId=${id}`, {
+      let result = await instance.get(`api/NFT/ListNFTRewards?PageNumber=1&PageSize=100&nftId=${id}`, {
         headers: { Authorization: `Bearer ${auth?.user?.token}` },
       });
       if (result?.status === 200) setHistoryData(result?.data?.data);
+      result = await instance.get(`/api/NFT/ListTotalNFTRewards?nftId=${id}`, {
+        headers: { Authorization: `Bearer ${auth?.user?.token}` },
+      });
+      if (result?.status === 200) setTotalWon(result?.data?.data);
     } catch (error) {
       notifyError(error);
       throw error;
@@ -145,6 +150,14 @@ const NFTDeatilModal = ({
                         <h6>Assigend Level:</h6>
                         <p>{nftInfo.level}</p>
                       </Col>
+                      {
+                        !isStack && (
+                          <Col sm={12} md={6}>
+                            <h6>Tokens won from staking:</h6>
+                            <p>{totalWon}</p>
+                          </Col>
+                        )
+                      }
                       {/* <Col sm={12} md={6}>
                         <h6>Date:</h6>
                         <p>12-12-2022</p>
