@@ -95,14 +95,20 @@ const NFTStaking = () => {
   };
 
   const getUserOwnNFT = async (userWalletAddress) => {    
-    try{
-      const nftNotStaked = await nftContract.methods.listMyNFTs(userWalletAddress).call();
-      const nftStaked = await stakingContract.methods.listNFTStaked(userWalletAddress).call();
-      setUserOwnNFT(nftNotStaked);
-      setStakedNFT(nftStaked);    
-    }catch(err){
-      console.log(err);
-    }    
+    const nftNotStaked = await nftContract.methods.listMyNFTs(userWalletAddress).call();
+    const nftStaked = await stakingContract.methods.listNFTStaked(userWalletAddress).call();
+    setUserOwnNFT(nftNotStaked);
+    setStakedNFT(nftStaked);
+    // setUserOwnNFT(allApis?.data?.result);
+    //     let data = [];
+    //     for (let index = 0; index < balances?.length; index++) {
+    //       allApis?.data?.result?.map((nft) => {
+    //         if (+nft?.token_id === +balances[index]?.toNumber()) {
+    //           data?.push(nft);
+    //         }
+    //       });
+    //     }
+    // setStakedNFT(data);    
   };
 
   const unUserStakeNFT = async () => {
