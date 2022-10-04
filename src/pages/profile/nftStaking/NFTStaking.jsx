@@ -96,7 +96,7 @@ const NFTStaking = () => {
 
   const getUserOwnNFT = async (userWalletAddress) => {    
     const nftNotStaked = await nftContract.methods.listMyNFTs(userWalletAddress).call();
-    const nftStaked = await stakingContract.methods.listNFTStaked(userWalletAddress).call();
+    const nftStaked = await stakingContract.methods.listNFTStakedForAddress(userWalletAddress).call();
     setUserOwnNFT(nftNotStaked);
     setStakedNFT(nftStaked);
     // setUserOwnNFT(allApis?.data?.result);
