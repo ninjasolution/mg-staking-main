@@ -65,9 +65,9 @@ const PricingCard = ({mintAddress, updateData, nftContract, stakingContract, lis
         </div>
         <div className='bodyContent DBlock'>
           <h6>
-            Avaiable <span>{pricingData?.avaiable}</span>
+            Available <span>{pricingData?.avaiable}</span>
           </h6>
-          <p>People are winning {pricingData?.wonRate}% at the moment by staking</p>
+          <p className='heading rate'>People are winning {pricingData?.wonRate}% at the moment by staking</p>
           <br/>
           <h6>Perks:</h6>
           <ul>
