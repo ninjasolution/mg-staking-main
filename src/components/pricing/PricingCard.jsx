@@ -8,12 +8,13 @@ import marketPlaceABI from 'config/marketPlaceABI.json';
 import { useSelector } from 'react-redux';
 import WalletModal from 'modals/WalletModal';
 
-const PricingCard = ({mintAddress, updateData, nftContract, list, handleShow, level }) => {
+const PricingCard = ({mintAddress, updateData, nftContract, stakingContract, list, handleShow, level }) => {
   const { auth } = useSelector((state) => state);
   const [show, setShow] = useState(false);
   const [pricingData, setPricingData] = useState({
     price: null,
     avaiable: null,
+    wonRate: null,
   });
 
   const handleWalletClose = () => setShow(false);
@@ -23,9 +24,11 @@ const PricingCard = ({mintAddress, updateData, nftContract, list, handleShow, le
     const price = await nftContract.methods.mintPricePerLevel(level).call();
     const levelLimit = await nftContract.methods.mintLimitPerLevel(level).call();
     const levelMinted = await nftContract.methods.mintedPerLevel(level).call();
+    const totalValue = await stakingContract.methods.getTotalValueStaked().call();
     setPricingData({
       price: price,
       avaiable: (levelLimit - levelMinted)?.toString(),
+      wonRate: (level / totalValue * 100).toFixed(2)
     });
   };
 
@@ -64,6 +67,8 @@ const PricingCard = ({mintAddress, updateData, nftContract, list, handleShow, le
           <h6>
             Avaiable <span>{pricingData?.avaiable}</span>
           </h6>
+          <p>People are winning {pricingData?.wonRate}% at the moment by staking</p>
+          <br/>
           <h6>Perks:</h6>
           <ul>
             {list?.features?.map((feature) => (

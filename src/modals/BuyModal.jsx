@@ -62,6 +62,7 @@ const BuyModal = ({
                             updateData={updateData}
                             mintAddress={walletAddress}
                             nftContract={nftContract}
+                            stakingContract={stakingContract}
                             list={list}
                             level={list?.id}
                             handleShow={() => {
