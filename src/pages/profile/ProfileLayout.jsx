@@ -17,8 +17,8 @@ import WalletConnectProvider from '@walletconnect/web3-provider';
 import nftABI from 'config/nft.json';
 import stakingABI from 'config/staking.json';
 
-const nftAddr = '0xaBEe4fab21E4632688C849d397294BBd404900ce';
-const stakingAddr = '0x00a6614D06981634eCF043a43B03842EdDb28779';
+const nftAddr = '0x14DF9445ACBfC26FC8965f8CF1E773E01C966D63';
+const stakingAddr = '0x28358FFFC8Ea4447E1e8159A6e90f170Cdf6c8bd';
 
 let nftContract, stakingContract;
 
@@ -27,8 +27,7 @@ const providerOptions = {
     package: WalletConnectProvider,
     options: {
         rpc: {
-            1: "https://rpc.ankr.com/eth",
-            3: "https://ropsten.infura.io/v3/bd2501a22a1c427f8af23d3fb5a264bf"
+            80001: "https://rpc-mumbai.maticvigil.com/",            
         },
         bridge: 'https://bridge.walletconnect.org/',
         qrcode: true
@@ -76,10 +75,10 @@ const ProfileLayout = () => {
 
     provider.on('chainChanged', async (chainId) => {      
       console.log("Network:" + chainId);      
-      if (chainId != '0x3') {
+      if (chainId != '0x13881') {
         await window.ethereum.request({
             method: 'wallet_switchEthereumChain',
-            params: [{ chainId: '0x3' }], // chainId must be in hexadecimal numbers
+            params: [{ chainId: '0x13881' }], // chainId must be in hexadecimal numbers
         });
         // location.reload();
       }

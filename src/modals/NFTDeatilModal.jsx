@@ -82,7 +82,25 @@ const NFTDeatilModal = ({
       }).then(result => {
         nftContract.methods.safeTransferFrom(walletAddress, stakingContract._address, id).send({
           from: walletAddress
-        }).then(result => {notifySucess('Success!');handleClose();updateData();})
+        }).then(result => {
+          console.log(result);
+          notifySucess('Success!');
+          handleClose();
+          updateData();
+          try {
+            instance.post(
+              'api/NFT/Stake_nft',
+              { transactionId: result.transactionHash },
+              {
+                headers: {
+                  Authorization: `Bearer ${auth?.user?.token}`,
+                },
+              }
+            );
+          } catch (error) {
+            console.log(error);
+          }
+        })
       })
       .catch(err => {        
         notifyError(err.message);
