@@ -17,8 +17,8 @@ import WalletConnectProvider from '@walletconnect/web3-provider';
 import nftABI from 'config/nft.json';
 import stakingABI from 'config/staking.json';
 
-const nftAddr = '0x14DF9445ACBfC26FC8965f8CF1E773E01C966D63';
-const stakingAddr = '0x28358FFFC8Ea4447E1e8159A6e90f170Cdf6c8bd';
+const nftAddr = '0xaBEe4fab21E4632688C849d397294BBd404900ce';
+const stakingAddr = '0x14DF9445ACBfC26FC8965f8CF1E773E01C966D63';
 
 let nftContract, stakingContract;
 
@@ -27,7 +27,7 @@ const providerOptions = {
     package: WalletConnectProvider,
     options: {
         rpc: {
-            80001: "https://rpc-mumbai.maticvigil.com/",            
+            137: "https://polygon-rpc.com/",            
         },
         bridge: 'https://bridge.walletconnect.org/',
         qrcode: true
@@ -75,10 +75,10 @@ const ProfileLayout = () => {
 
     provider.on('chainChanged', async (chainId) => {      
       console.log("Network:" + chainId);      
-      if (chainId != '0x13881') {
+      if (chainId != '0x89') {
         await window.ethereum.request({
             method: 'wallet_switchEthereumChain',
-            params: [{ chainId: '0x13881' }], // chainId must be in hexadecimal numbers
+            params: [{ chainId: '0x89' }], // chainId must be in hexadecimal numbers
         });
         // location.reload();
       }
