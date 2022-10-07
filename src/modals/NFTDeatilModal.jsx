@@ -15,7 +15,7 @@ import {
   TableHeader
 } from 'react-bs-datatable';
 import { instance } from 'index';
-
+import { useSelector } from 'react-redux';
 
 const headers = [
   { title: 'ID', prop: 'id' },
@@ -26,8 +26,7 @@ const headers = [
   { title: 'Tokens', prop: 'tokens' },
 ];
 
-const NFTDeatilModal = ({
-  auth,
+const NFTDeatilModal = ({  
   id,
   walletAddress,
   nftContract,
@@ -45,6 +44,7 @@ const NFTDeatilModal = ({
   const [isHistory, setIsHistory] = useState(false);
   const [historyData, setHistoryData] = useState([]);
   const [totalWon, setTotalWon] = useState(0);
+  const { auth } = useSelector((state) => state);
 
   const fetchHistoryData = async () => {
     try {
