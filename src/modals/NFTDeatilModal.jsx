@@ -48,7 +48,7 @@ const NFTDeatilModal = ({
 
   const fetchHistoryData = async () => {
     try {
-      let result = await instance.get(`api/NFT/ListNFTRewards?PageNumber=1&PageSize=100&nftId=${id}`, {
+      let result = await instance.get(`api/NFT/ListNFTRewards?PageNumber=1&PageSize=100000000&nftId=${id}`, {
         headers: { Authorization: `Bearer ${auth?.user?.token}` },
       });
       if (result?.status === 200) setHistoryData(result?.data?.data);
