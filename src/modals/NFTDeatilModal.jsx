@@ -228,9 +228,9 @@ const NFTDeatilModal = ({
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu >
-                        <Dropdown.Item className='d-flex justify-content-end align-items-center' onClick={()=>{setRowsPerPage(15)}}>15</Dropdown.Item>
-                        <Dropdown.Item className='d-flex justify-content-end align-items-center' onClick={()=>{setRowsPerPage(20)}}>20</Dropdown.Item>
-                        <Dropdown.Item className='d-flex justify-content-end align-items-center' onClick={()=>{setRowsPerPage(30)}}>30</Dropdown.Item>
+                        <Dropdown.Item className='d-flex justify-content-end align-items-center' onClick={()=>{setRowsPerPage(15); setPageNum(1);}}>15</Dropdown.Item>
+                        <Dropdown.Item className='d-flex justify-content-end align-items-center' onClick={()=>{setRowsPerPage(20); setPageNum(1);}}>20</Dropdown.Item>
+                        <Dropdown.Item className='d-flex justify-content-end align-items-center' onClick={()=>{setRowsPerPage(30); setPageNum(1);}}>30</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
                   </Col>
@@ -258,7 +258,7 @@ const NFTDeatilModal = ({
                       <tr>                      
                         <td>{data.gameName}</td>
                         <td>{data.tournament}</td>
-                        <td>{data.date}</td>
+                        <td>{data.date.replace('T',' ').substring(0, data.date.indexOf('.'))}</td>
                         <td>{parseFloat(data.percent.substring(0, data.percent.length - 1)).toFixed(2) + '%'}</td>                      
                         <td>{data.tokens}</td>
                       </tr>
