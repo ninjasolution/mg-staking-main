@@ -10,15 +10,14 @@ import {
   DatatableWrapper,
   Filter,
   Pagination,
-  // PaginationOpts,
+  PaginationOptions,
   TableBody,
   TableHeader
 } from 'react-bs-datatable';
 import { instance } from 'index';
 import { useSelector } from 'react-redux';
 
-const headers = [
-  { title: 'ID', prop: 'id' },
+const headers = [  
   { title: 'GameName', prop: 'gameName' },
   { title: 'Tournament', prop: 'tournament' },
   { title: 'Date', prop: 'date' },
@@ -228,7 +227,7 @@ const NFTDeatilModal = ({
                       lg={4}
                       className="d-flex flex-col justify-content-lg-center align-items-center justify-content-sm-start mb-2 mb-sm-0"
                     >
-                      {/* <PaginationOpts /> */}
+                      <PaginationOptions />
                     </Col>
                     <Col
                       xs={12}
