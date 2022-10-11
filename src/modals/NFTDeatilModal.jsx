@@ -212,7 +212,12 @@ const NFTDeatilModal = ({
             )}
             {isHistory && (
               <Row>
-                <DatatableWrapper body={historyData} headers={headers}>
+                <DatatableWrapper body={historyData} headers={headers} paginationOptionsProps={{
+                  initialState: {
+                    rowsPerPage: 10,
+                    options: [5, 10, 15, 20]
+                  }
+                }}>
                   <Row className="mb-4">
                     <Col
                       xs={12}
