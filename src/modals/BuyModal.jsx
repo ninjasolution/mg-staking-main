@@ -16,6 +16,7 @@ const BuyModal = ({
   page = '',
   notifySucess,
   notifyError,
+  onCheckNetwork,
   updateData  
 }) => {
   const [isCC, setIsCC] = useState(false);
@@ -65,6 +66,7 @@ const BuyModal = ({
                             stakingContract={stakingContract}
                             list={list}
                             level={list?.id}
+                            onCheckNetwork={onCheckNetwork}
                             handleShow={() => {
                               setIsPricing(false);
                               setIsSuccess(true);

@@ -14,7 +14,7 @@ const source = axios.CancelToken.source();
 const cancelToken = source.token;
 
 const NFTStaking = () => {
-  const {web3, walletAddress, nftContract, stakingContract, onConnect, onDisconnect, walletStringHelper} = useOutletContext();
+  const {web3, walletAddress, nftContract, stakingContract, onConnect, onDisconnect, walletStringHelper, onCheckNetwork} = useOutletContext();
   
   let nftSliderRef = useRef();
   let stakingSliderRef = useRef();
@@ -275,6 +275,7 @@ const NFTStaking = () => {
               amount: 1,
             });
           }}
+          onCheckNetwork = {onCheckNetwork}
           page='staking'
           isStack={true}
           stackHandler={userStakeNFT}
@@ -301,6 +302,7 @@ const NFTStaking = () => {
             });
           }}
           page='staking'
+          onCheckNetwork = {onCheckNetwork}
           isStack={false}
           stackHandler={unUserStakeNFT}
           levelHandler={(e) =>
@@ -317,6 +319,7 @@ const NFTStaking = () => {
           notifySucess={notifySucess}
           notifyError={notifyError}
           updateData={updateData}
+          onCheckNetwork = {onCheckNetwork}
           handleClose={() => {
             setIsBuying(false);            
           }}

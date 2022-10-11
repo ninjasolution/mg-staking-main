@@ -8,7 +8,7 @@ import marketPlaceABI from 'config/marketPlaceABI.json';
 import { useSelector } from 'react-redux';
 import WalletModal from 'modals/WalletModal';
 
-const PricingCard = ({mintAddress, updateData, nftContract, stakingContract, list, handleShow, level }) => {
+const PricingCard = ({mintAddress, updateData, nftContract, stakingContract, list, handleShow, level, onCheckNetwork }) => {
   const { auth } = useSelector((state) => state);
   const [show, setShow] = useState(false);
   const [pricingData, setPricingData] = useState({
@@ -33,6 +33,7 @@ const PricingCard = ({mintAddress, updateData, nftContract, stakingContract, lis
   };
 
   const buyNFT = async () => {
+    onCheckNetwork();
     nftContract.methods.levelMint(1, parseInt(level)).estimateGas({
       from: mintAddress,
       value: pricingData?.price

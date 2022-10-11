@@ -55,6 +55,8 @@ const web3Modal = new Web3Modal({
   providerOptions
 });
 
+let web3;
+
 
 const ProfileLayout = () => {
   const { auth } = useSelector((state) => state);
@@ -62,8 +64,7 @@ const ProfileLayout = () => {
   
   const [connected, setConnected] = useState(false);
   const [walletAddress, setWalletAddress] = useState('');  
-  const [web3, setWeb3] = useState(null);  
-
+  
   const walletStringHelper = (address) => {return address.substring(0, 4) + "..." + address.substring(address.length - 6, address.length);};
 
   const subscribeProvider = async (provider) => {
@@ -74,33 +75,37 @@ const ProfileLayout = () => {
     });
 
     provider.on('chainChanged', async (chainId) => {      
-      console.log("Network:" + chainId);      
-      if (chainId != '0x89') {
-        await window.ethereum.request({
-            method: 'wallet_switchEthereumChain',
-            params: [{ chainId: '0x89' }], // chainId must be in hexadecimal numbers
-        });
-        // location.reload();
-      }
+      onCheckNetwork();
     });    
   };  
+
+  const onCheckNetwork = async () => {
+    const networkId = await web3?.eth?.net?.getId(); 
+    if (networkId && networkId !== 137) {
+      await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: '0x89' }], // chainId must be in hexadecimal numbers
+      });      
+    }
+  }
 
   const onConnect = async () => {    
     const provider = await web3Modal.connect();
     await web3Modal.toggleModal();
     await subscribeProvider(provider);
-    const web3 = initWeb3(provider);
+    const web3Init = initWeb3(provider);
 
-    const accounts = await web3.eth.getAccounts();
+    const accounts = await web3Init.eth.getAccounts();
     const account = accounts[0];
-    const networkId = await web3.eth.net.getId();
+    const networkId = await web3Init.eth.net.getId();
     
-    nftContract = new web3.eth.Contract(nftABI, nftAddr);
-    stakingContract = new web3.eth.Contract(stakingABI, stakingAddr);
+    nftContract = new web3Init.eth.Contract(nftABI, nftAddr);
+    stakingContract = new web3Init.eth.Contract(stakingABI, stakingAddr);
     // console.log("wallet" + account);
-    setWeb3(web3);
+    web3 = web3Init;
     setConnected(true);
     setWalletAddress(account);    
+    onCheckNetwork();
   };
 
   const onDisconnect = async () => {    
@@ -110,7 +115,7 @@ const ProfileLayout = () => {
     await web3Modal.clearCachedProvider();
     nftContract = null;
     stakingContract = null;    
-    setWeb3(null);
+    web3 = null;
     setConnected(false);
     setWalletAddress('');
   };
@@ -198,7 +203,7 @@ const ProfileLayout = () => {
                 </Col>
                 <Col sm={12} md={8}>
                   <div className='profileLayoutContent DBlock'>
-                    <Outlet context = {{web3, walletAddress, nftContract, stakingContract, onConnect, onDisconnect, walletStringHelper}}/>
+                    <Outlet context = {{web3, walletAddress, nftContract, stakingContract, onConnect, onDisconnect, walletStringHelper, onCheckNetwork}}/>
                   </div>
                 </Col>
               </Row>

@@ -37,6 +37,7 @@ const NFTDeatilModal = ({
   notifySucess,
   notifyError,
   updateData,
+  onCheckNetwork,
   pricing
 }) => {  
   const [nftInfo, setNftInfo] = useState({});  
@@ -75,6 +76,7 @@ const NFTDeatilModal = ({
   }, []);
 
   const onClickStake = async () => {
+    onCheckNetwork();
     if (isStack){
       nftContract.methods.safeTransferFrom(walletAddress, stakingContract._address, id).estimateGas({
         from: walletAddress
