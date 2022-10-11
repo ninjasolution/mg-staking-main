@@ -6,24 +6,11 @@ import { MdCancel } from 'react-icons/md';
 import ConguragsNFTMsg from './ConguragsNFTMsg';
 import PaymentCard from './PaymentCard';
 import axios from 'axios';
-import {
-  DatatableWrapper,
-  Filter,
-  Pagination,
-  PaginationOptions,
-  TableBody,
-  TableHeader
-} from 'react-bs-datatable';
 import { instance } from 'index';
 import { useSelector } from 'react-redux';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Button from 'react-bootstrap/Button';
 
-const headers = [  
-  { title: 'GameName', prop: 'gameName' },
-  { title: 'Tournament', prop: 'tournament' },
-  { title: 'Date', prop: 'date' },
-  { title: 'Percent', prop: 'percent' },
-  { title: 'Tokens', prop: 'tokens' },
-];
 
 const NFTDeatilModal = ({  
   id,
@@ -42,17 +29,32 @@ const NFTDeatilModal = ({
 }) => {  
   const [nftInfo, setNftInfo] = useState({});  
   const [isHistory, setIsHistory] = useState(false);
-  const [historyData, setHistoryData] = useState([]);
   const [totalWon, setTotalWon] = useState(0);
   const { auth } = useSelector((state) => state);
 
+  const [historyData, setHistoryData] = useState([]);
+  const [rowsPerPage, setRowsPerPage] = useState(15);
+  const [pageNum, setPageNum] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
+
   const fetchHistoryData = async () => {
     try {
-      let result = await instance.get(`api/NFT/ListNFTRewards?PageNumber=1&PageSize=100000000&nftId=${id}`, {
+      let result = await instance.get(`api/NFT/ListNFTRewards?PageNumber=${pageNum}&PageSize=${rowsPerPage}&nftId=${id}`, {
         headers: { Authorization: `Bearer ${auth?.user?.token}` },
       });
-      if (result?.status === 200) setHistoryData(result?.data?.data);
-      result = await instance.get(`/api/NFT/ListTotalNFTRewards?nftId=${id}`, {
+      if (result?.status === 200){
+        setHistoryData(result?.data?.data);
+        setTotalPage(result?.data?.totalPages);
+      }        
+    } catch (error) {
+      notifyError(error);
+      throw error;
+    }
+  }
+
+  const fetchTotalWon = async () => {
+    try {      
+      let result = await instance.get(`/api/NFT/ListTotalNFTRewards?nftId=${id}`, {
         headers: { Authorization: `Bearer ${auth?.user?.token}` },
       });
       if (result?.status === 200) setTotalWon(result?.data?.totalRewards);
@@ -72,8 +74,11 @@ const NFTDeatilModal = ({
         });
       });
       fetchHistoryData();
+      fetchTotalWon();
     }
   }, []);
+
+  useEffect(()=>{fetchHistoryData();},[pageNum, rowsPerPage]);
 
   const onClickStake = async () => {
     onCheckNetwork();
@@ -213,43 +218,55 @@ const NFTDeatilModal = ({
               </Row>
             )}
             {isHistory && (
-              <Row>
-                <DatatableWrapper body={historyData} headers={headers} paginationOptionsProps={{
-                  initialState: {
-                    rowsPerPage: 10,
-                    options: [5, 10, 15, 20]
-                  }
-                }}>
-                  <Row className="mb-4">
-                    <Col
-                      xs={12}
-                      lg={4}
-                      className="d-flex flex-col justify-content-end align-items-end"
-                    >
-                       <PaginationOptions />
-                    </Col>
-                    <Col
-                      xs={12}
-                      sm={6}
-                      lg={4}
-                      className="d-flex flex-col justify-content-lg-center align-items-center justify-content-sm-start mb-2 mb-sm-0"
-                    >                     
-                    </Col>
-                    <Col
-                      xs={12}
-                      sm={6}
-                      lg={4}
-                      className="d-flex flex-col justify-content-end align-items-end"
-                    >
-                      <Pagination />
-                    </Col>
-                  </Row>
-                  <Table>
-                    <TableHeader />
-                    <TableBody />
+              <>
+                <Row className='mb-4'>
+                  <Col sm={12} md={6} className="d-flex justify-content-center align-items-center mb-1">
+                    <p>Rows Per Page</p> &nbsp;&nbsp;&nbsp;
+                    <Dropdown>
+                      <Dropdown.Toggle variant="light" id="dropdown-basic" className='d-flex justify-content-end align-items-center' style={{width: 100}}>
+                        {rowsPerPage}
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu >
+                        <Dropdown.Item className='d-flex justify-content-end align-items-center' onClick={()=>{setRowsPerPage(15)}}>15</Dropdown.Item>
+                        <Dropdown.Item className='d-flex justify-content-end align-items-center' onClick={()=>{setRowsPerPage(20)}}>20</Dropdown.Item>
+                        <Dropdown.Item className='d-flex justify-content-end align-items-center' onClick={()=>{setRowsPerPage(30)}}>30</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </Col>
+                  <Col sm={12} md={6} className="d-flex justify-content-center align-items-center">
+                    <Button variant="primary" onClick={()=>{setPageNum(1)}}>&lt;&lt;</Button>  &nbsp;
+                    <Button variant="primary" onClick={()=>{setPageNum(pageNum == 1?1:pageNum - 1)}}>&lt;</Button>&nbsp;
+                    <Button variant="primary" >{pageNum}</Button>&nbsp;
+                    <Button variant="primary" onClick={()=>{setPageNum(pageNum == totalPage?totalPage:pageNum + 1)}}>&gt;</Button>&nbsp;
+                    <Button variant="primary" onClick={()=>{setPageNum(totalPage)}}>&gt;&gt;</Button>&nbsp;
+                  </Col>                
+                </Row>
+                <Row>
+                  <Table bordered variant="light" style={{color: 'black'}}>
+                    <thead>
+                      <tr>                        
+                        <th>Game Name</th>
+                        <th>Tournament</th>
+                        <th>Date</th>
+                        <th>Percent</th>
+                        <th>Tokens</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {historyData.map((data) => (
+                      <tr>                      
+                        <td>{data.gameName}</td>
+                        <td>{data.tournament}</td>
+                        <td>{data.date}</td>
+                        <td>{data.percent.toFixed(2)}</td>                      
+                        <td>{data.tokens}</td>
+                      </tr>
+                    ))}                    
+                    </tbody>
                   </Table>
-                </DatatableWrapper>
-              </Row>
+                </Row>
+              </>              
             )}            
           </div>
         </div>
