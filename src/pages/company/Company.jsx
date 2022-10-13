@@ -6,6 +6,7 @@ import StakeMatic from 'components/common/StakeMatic';
 import MegaFansNFT from 'components/common/MegaFansNFT';
 import SupportWallet from 'components/services/SupportWallet';
 import NodesValidator from 'components/services/NodesValidator';
+import PubNubChatWidget from 'components/pubnub/PubNubChatWidget';
 
 const Company = () => {
   let trustData = {
@@ -47,6 +48,7 @@ const Company = () => {
       <WhyTrust trustData={trustData} />
       <ReviewsStarCarousel />
       <StakeMatic />
+      <PubNubChatWidget />  
     </div>
   );
 };

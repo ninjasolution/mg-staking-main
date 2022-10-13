@@ -14,6 +14,15 @@ import { PersistGate } from 'redux-persist/integration/react';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from 'components/common/Loader';
 
+import PubNub, { generateUUID } from "pubnub"
+import {PubNubProvider} from "pubnub-react"
+
+const pubnub = new PubNub({
+  publishKey: "pub-c-dfdb0a08-9c55-4eef-87b6-e0646f8fad7a",
+  subscribeKey: "sub-c-437a17ff-2298-45ba-a5bd-90732ad0c726",
+  uuid: generateUUID(),
+})
+
 const getLibrary = (provider) => {
   const library = new ethers.providers.Web3Provider(provider);
   library.pollingInterval = 8000; // frequency provider is polling
@@ -34,15 +43,17 @@ root.render(
     <Provider store={store}>
       <PersistGate loading={<Loader />} persistor={persistor}>
         <Web3ReactProvider getLibrary={getLibrary}>
-          <BrowserRouter>
-            <App />
-            <ToastContainer
-              position='top-right'
-              autoClose={3000}
-              closeOnClick={true}
-              pauseOnHover={true}
-            />
-          </BrowserRouter>
+          <PubNubProvider client={pubnub}>
+            <BrowserRouter>
+              <App />
+              <ToastContainer
+                position='top-right'
+                autoClose={3000}
+                closeOnClick={true}
+                pauseOnHover={true}
+              />
+            </BrowserRouter>
+          </PubNubProvider>
         </Web3ReactProvider>
       </PersistGate>
     </Provider>
