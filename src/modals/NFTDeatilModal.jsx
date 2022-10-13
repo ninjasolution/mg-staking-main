@@ -258,7 +258,7 @@ const NFTDeatilModal = ({
                       <tr>                      
                         <td>{data.gameName}</td>
                         <td>{data.tournament}</td>
-                        <td>{(new Date(`${data.date}Z`).toLocaleString('en-US', { hour12: false }).substring(0, data.date.lastIndexOf(':')))}</td>
+                        <td>{new Date(`${data.date}Z`).toLocaleString('en-US', { hour12: false }).substring(0, new Date(`${data.date}Z`).toLocaleString('en-US', { hour12: false }).lastIndexOf(':'))}</td>
                         <td>{parseFloat(data.percent.substring(0, data.percent.length - 1)).toFixed(2) + '%'}</td>                      
                         <td>{data.tokens}</td>
                       </tr>
