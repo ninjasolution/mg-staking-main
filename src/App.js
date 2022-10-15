@@ -22,6 +22,7 @@ import Profile from 'pages/profile/Profile';
 import MarketPlace from 'pages/marketPlace/MarketPlace';
 import { useSelector } from 'react-redux';
 import EditProfile from 'pages/profile/EditProfile';
+import PubNubChatWidget from 'components/pubnub/PubNubChatWidget';
 
 function App() {
   const { auth } = useSelector((state) => state);
@@ -102,6 +103,7 @@ function App() {
           <Route path='token-staking' element={<TokenStaking />} />
         </Route>
       </Routes>
+      <PubNubChatWidget />
     </div>
   );
 }

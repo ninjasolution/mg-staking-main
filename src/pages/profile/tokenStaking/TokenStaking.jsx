@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
 const TokenStaking = () => {
-  const [comingSoon] = useState(true);
+  const [comingSoon] = useState(false);
   const [show, setShow] = useState(false);
   const stakingSliderRef = useRef();
 
