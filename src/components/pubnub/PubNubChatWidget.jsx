@@ -5,6 +5,13 @@ import PubNub, { generateUUID } from "pubnub"
 import {PubNubProvider} from "pubnub-react";
 import { instance } from 'index';
 
+const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+const pubnub = new PubNub({
+    publishKey: "pub-c-dfdb0a08-9c55-4eef-87b6-e0646f8fad7a",
+    subscribeKey: "sub-c-437a17ff-2298-45ba-a5bd-90732ad0c726",
+    uuid:  `User-${genRanHex(4)}`,
+});
+
 export default function PubNubChatWidget() {
     const [isOpen, setIsOpen] = useState(false);
     const { auth } = useSelector((state) => state);
@@ -13,19 +20,11 @@ export default function PubNubChatWidget() {
         setIsOpen(!isOpen);
     }
 
-    const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
-
     const myUser = {
-        id: `User-${genRanHex(4)}`,
-        name: auth?.user?.username,
+        id: pubnub.uuid,
+        name: auth?.user?.username ? auth?.user?.username : 'UserXXX',
         profileUrl: auth?.user?.image,
     };
-
-    const pubnub = new PubNub({
-        publishKey: "pub-c-dfdb0a08-9c55-4eef-87b6-e0646f8fad7a",
-        subscribeKey: "sub-c-437a17ff-2298-45ba-a5bd-90732ad0c726",
-        uuid: myUser.id,
-    });
 
     return (
         <>
