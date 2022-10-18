@@ -15,7 +15,7 @@ export default function PubNubChatWidget() {
 
     const myUser = {
         id: auth?.user?.email ? auth?.user?.email : generateUUID(),
-        name: auth?.user?.username ? auth?.user?.username : 'UserXXX',
+        name: auth?.user?.username && auth?.user?.username !== 'UserXXX' ? auth?.user?.username : 'UserXXX',
         profileUrl: auth?.user?.image ? auth?.user?.image : '',
     };
 
