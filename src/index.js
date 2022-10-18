@@ -14,14 +14,14 @@ import { PersistGate } from 'redux-persist/integration/react';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from 'components/common/Loader';
 
-import PubNub, { generateUUID } from "pubnub"
-import {PubNubProvider} from "pubnub-react"
+// import PubNub, { generateUUID } from "pubnub"
+// import {PubNubProvider} from "pubnub-react"
 
-const pubnub = new PubNub({
-  publishKey: "pub-c-dfdb0a08-9c55-4eef-87b6-e0646f8fad7a",
-  subscribeKey: "sub-c-437a17ff-2298-45ba-a5bd-90732ad0c726",
-  uuid: generateUUID(),
-})
+// const pubnub = new PubNub({
+//   publishKey: "pub-c-dfdb0a08-9c55-4eef-87b6-e0646f8fad7a",
+//   subscribeKey: "sub-c-437a17ff-2298-45ba-a5bd-90732ad0c726",
+//   uuid: generateUUID(),
+// })
 
 const getLibrary = (provider) => {
   const library = new ethers.providers.Web3Provider(provider);
@@ -43,7 +43,7 @@ root.render(
     <Provider store={store}>
       <PersistGate loading={<Loader />} persistor={persistor}>
         <Web3ReactProvider getLibrary={getLibrary}>
-          <PubNubProvider client={pubnub}>
+          {/* <PubNubProvider client={pubnub}> */}
             <BrowserRouter>
               <App />
               <ToastContainer
@@ -53,7 +53,7 @@ root.render(
                 pauseOnHover={true}
               />
             </BrowserRouter>
-          </PubNubProvider>
+          {/* </PubNubProvider> */}
         </Web3ReactProvider>
       </PersistGate>
     </Provider>
