@@ -92,7 +92,7 @@ function App() {
         <Route
           path='/profile'
           element={
-            !auth?.isLoggedIn ? (
+            auth?.isLoggedIn ? (
               <ProfileLayout />
             ) : (
               <Navigate to='/sign-in' replace={true} />
