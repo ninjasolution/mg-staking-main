@@ -13,10 +13,12 @@ export default function PubNubChatWidget() {
         setIsOpen(!isOpen);
     }
 
+    const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+
     const myUser = {
-        id: auth?.user?.email ? auth?.user?.email : generateUUID(),
-        name: auth?.user?.username && auth?.user?.username !== 'UserXXX' ? auth?.user?.username : 'UserXXX',
-        profileUrl: auth?.user?.image ? auth?.user?.image : '',
+        id: `User-${genRanHex(4)}`,
+        name: auth?.user?.username,
+        profileUrl: auth?.user?.image,
     };
 
     const pubnub = new PubNub({
