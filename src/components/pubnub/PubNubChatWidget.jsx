@@ -21,7 +21,7 @@ export default function PubNubChatWidget() {
     }
 
     const myUser = {
-        id: pubnub.uuid,
+        id: pubnub.getUUID(),
         name: auth?.user?.username ? auth?.user?.username : 'UserXXX',
         profileUrl: auth?.user?.image,
     };
