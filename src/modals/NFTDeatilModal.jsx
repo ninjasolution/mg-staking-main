@@ -115,7 +115,7 @@ const NFTDeatilModal = ({
       .catch(err => {        
         notifyError(err.message);
         handleClose();
-        updateData();
+        // updateData();
       });
     } else {
       stakingContract.methods.unstakeNft(id, walletAddress).estimateGas({
@@ -123,12 +123,16 @@ const NFTDeatilModal = ({
       }).then(result => {
         stakingContract.methods.unstakeNft(id, walletAddress).send({
           from: walletAddress
-        }).then(result => {notifySucess('Success!');handleClose();updateData();})
+        }).then(result => {
+          notifySucess('Success!');
+          handleClose();
+          updateData();
+      })
       })
       .catch(err => {
         notifyError(err.message);
         handleClose();
-        updateData();
+        // updateData();
       });
     }
   }

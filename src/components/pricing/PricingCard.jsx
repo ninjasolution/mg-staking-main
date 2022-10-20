@@ -41,7 +41,7 @@ const PricingCard = ({mintAddress, updateData, nftContract, stakingContract, lis
       nftContract.methods.levelMint(1, parseInt(level)).send({
         from: mintAddress,
         value: pricingData?.price
-      }).then(result => {toast.success('Success!');updateData();handleShow();})
+      }).then(result => {toast.success('Success!');handleShow();updateData();})
     })
     .catch(err => {
       // let data = JSON.parse(err.message.substring(err.message.indexOf('{'), err.message.indexOf('}') + 1));

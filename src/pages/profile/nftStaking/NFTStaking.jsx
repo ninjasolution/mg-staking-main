@@ -83,6 +83,10 @@ const NFTStaking = () => {
   const notifyError = (msg) =>{
     toast.error(msg);
   }
+  
+  const sleep = async (ms) => {
+      return new Promise(resolve => setTimeout(resolve, ms));
+  };
 
   const userStakeNFT = async () => {
     try {
@@ -94,9 +98,16 @@ const NFTStaking = () => {
     }
   };
 
-  const getUserOwnNFT = async (userWalletAddress) => {    
-    const nftNotStaked = await nftContract.methods.listMyNFTs(userWalletAddress).call();
-    const nftStaked = await stakingContract.methods.listNFTStakedForAddress(userWalletAddress).call();
+  const getUserOwnNFT = async (userWalletAddress) => {
+    let nftNotStaked;
+    let nftStaked;
+    while(true){
+      nftNotStaked = await nftContract.methods.listMyNFTs(userWalletAddress).call();
+      nftStaked = await stakingContract.methods.listNFTStakedForAddress(userWalletAddress).call();
+      // console.log(nftNotStaked);
+      if (JSON.stringify(nftNotStaked) != JSON.stringify(userOwnNFT)) break;    
+      await sleep(1000);
+    }
     setUserOwnNFT(nftNotStaked);
     setStakedNFT(nftStaked);
     // setUserOwnNFT(allApis?.data?.result);
