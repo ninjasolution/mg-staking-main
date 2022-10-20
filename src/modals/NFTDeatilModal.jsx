@@ -157,7 +157,7 @@ const NFTDeatilModal = ({
                 <Col sm={12} md={5}>
                   <div className='detailImg DBlock'>
                     <img
-                      src={`https://arcadeape.mypinata.cloud/ipfs/QmbJgMZXqPvvQJMrhQir9VDA8f8F8Hsm13MciJL5t3d4Lx/${id}.jpg`}
+                      src={`https://megafans.mypinata.cloud/ipfs/QmebhFnQA35j4yGhGyNrGumBkuTmPFYr3NLvdxk3irvcBj/${id}.jpg`}
                       alt='NFT Staking Img'
                     />
                   </div>
@@ -181,10 +181,10 @@ const NFTDeatilModal = ({
                       {
                         !isStack && (
                           <>
-                            <Col sm={12} md={6}>
+                          <Col sm={12} md={6}>
                               <h6>Tokens Won:</h6>
-                              <p>{totalWon}</p>
-                            </Col>
+                            <p>{totalWon}</p>
+                          </Col>
                             <Col sm={12} md={6}>
                               <h6>Won in Dollar:</h6>
                               <p>{totalWonDollar}</p>
