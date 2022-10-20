@@ -30,7 +30,7 @@ const NFTDeatilModal = ({
   const [nftInfo, setNftInfo] = useState({});  
   const [isHistory, setIsHistory] = useState(false);
   const [totalWon, setTotalWon] = useState(0);
-  const [totalWonDollar, setTotalWonDollar] = useState(0);
+  const [totalWonDollar, setTotalWonDollar] = useState('0');
   const { auth } = useSelector((state) => state);
 
   const [historyData, setHistoryData] = useState([]);
@@ -60,7 +60,7 @@ const NFTDeatilModal = ({
       });
       if (result?.status === 200){
         setTotalWon(result?.data?.totalRewards);
-        setTotalWonDollar(result?.data?.dollarValue);
+        setTotalWonDollar(result?.data?.dollarValue ? result?.data?.dollarValue : '0');
       } 
     } catch (error) {
       notifyError(error);
