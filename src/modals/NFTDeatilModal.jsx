@@ -30,6 +30,7 @@ const NFTDeatilModal = ({
   const [nftInfo, setNftInfo] = useState({});  
   const [isHistory, setIsHistory] = useState(false);
   const [totalWon, setTotalWon] = useState(0);
+  const [totalWonDollar, setTotalWonDollar] = useState(0);
   const { auth } = useSelector((state) => state);
 
   const [historyData, setHistoryData] = useState([]);
@@ -57,7 +58,10 @@ const NFTDeatilModal = ({
       let result = await instance.get(`/api/NFT/ListTotalNFTRewards?nftId=${id}`, {
         headers: { Authorization: `Bearer ${auth?.user?.token}` },
       });
-      if (result?.status === 200) setTotalWon(result?.data?.totalRewards);
+      if (result?.status === 200){
+        setTotalWon(result?.data?.totalRewards);
+        setTotalWonDollar(result?.data?.dollarValue);
+      } 
     } catch (error) {
       notifyError(error);
       throw error;
@@ -153,7 +157,7 @@ const NFTDeatilModal = ({
                 <Col sm={12} md={5}>
                   <div className='detailImg DBlock'>
                     <img
-                      src={`https://megafans.mypinata.cloud/ipfs/QmebhFnQA35j4yGhGyNrGumBkuTmPFYr3NLvdxk3irvcBj/${id}.jpg`}
+                      src={`https://arcadeape.mypinata.cloud/ipfs/QmbJgMZXqPvvQJMrhQir9VDA8f8F8Hsm13MciJL5t3d4Lx/${id}.jpg`}
                       alt='NFT Staking Img'
                     />
                   </div>
@@ -161,25 +165,31 @@ const NFTDeatilModal = ({
                 <Col sm={12} md={7}>
                   <div className='detailContent DBlock'>
                     <h3>Detail</h3>
-                    <Row>
-                      <Col sm={12} md={6}>
+                    <Row className="w-100">
+                      <Col sm={12} md={4}>
                         <h6>Name:</h6>
                         <p>{nftInfo.name}</p>
                       </Col>
-                      <Col sm={12} md={6}>
+                      <Col sm={12} md={4}>
                         <h6>Category:</h6>
                         <p>{nftInfo.description}</p>
                       </Col>
-                      <Col sm={12} md={6}>
-                        <h6>Assigend Level:</h6>
+                      <Col sm={12} md={4}>
+                        <h6>Level:</h6>
                         <p>{nftInfo.level}</p>
                       </Col>
                       {
                         !isStack && (
-                          <Col sm={12} md={6}>
-                            <h6>Tokens won from staking:</h6>
-                            <p>{totalWon}</p>
-                          </Col>
+                          <>
+                            <Col sm={12} md={6}>
+                              <h6>Tokens Won:</h6>
+                              <p>{totalWon}</p>
+                            </Col>
+                            <Col sm={12} md={6}>
+                              <h6>Won in Dollar:</h6>
+                              <p>{totalWonDollar}</p>
+                            </Col>
+                          </>
                         )
                       }
                       {/* <Col sm={12} md={6}>
